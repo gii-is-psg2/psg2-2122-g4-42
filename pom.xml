@@ -34,6 +34,15 @@
         </roles>
         <timezone>Europe/Spain</timezone>
         </developer>
+        <developer>
+        <id>diegonqui</id>
+        <name>Diego Gonzalez Quintanilla</name>
+        <email>diegonqui@alum.us.es</email>
+        <roles>
+            <role>Developer</role>
+        </roles>
+        <timezone>Europe/Spain</timezone>
+        </developer>
     </developers>
     <properties>
 
