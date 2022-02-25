@@ -25,6 +25,15 @@
         </roles>
         <timezone>Europe/Spain</timezone>
         </developer>
+        <developer>
+        <id>pabsanper</id>
+        <name>Pablo Santos Perez</name>
+        <email>pabsanper3@alum.us.es</email>
+        <roles>
+            <role>Developer</role>
+        </roles>
+        <timezone>Europe/Spain</timezone>
+        </developer>
     </developers>
     <properties>
 
