@@ -14,6 +14,18 @@
     </parent>
     <name>petclinic</name>
 
+    <developers>
+        <developer>
+        <id>marsamber</id>
+        <name>Marta Sampedro Bernal</name>
+        <email>marsamber@alum.us.es</email>
+        <roles>
+            <role>Scrum Master</role>
+            <role>Developer</role>
+        </roles>
+        <timezone>Europe/Spain</timezone>
+        </developer>
+    </developers>
     <properties>
 
         <!-- Generic properties -->
