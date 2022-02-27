@@ -43,6 +43,15 @@
         </roles>
         <timezone>Europe/Spain</timezone>
         </developer>
+         <developer>
+        <id>juamenvar</id>
+        <name>Juan Antonio Mena Vargas</name>
+        <email>juamenvar@alum.us.es</email>
+        <roles>
+            <role>Developer</role>
+        </roles>
+        <timezone>Europe/Spain</timezone>
+        </developer>
     </developers>
     <properties>
 
