@@ -6,7 +6,7 @@
 
 <petclinic:layout pageName="owners">
 
-    <h2 style = "background-color: #DDDADA">Owner information</h2>
+    <h2 style = "background-color: #DDDADA">Owner Information</h2>
 
 
     <table class="table table-striped" >
