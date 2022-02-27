@@ -6,10 +6,10 @@
 
 <petclinic:layout pageName="owners">
 
-    <h2>Owner Information</h2>
+    <h2 style = "background-color: #DDDADA">Owner information</h2>
 
 
-    <table class="table table-striped">
+    <table class="table table-striped" >
         <tr>
             <th>Name</th>
             <td><b><c:out value="${owner.firstName} ${owner.lastName}"/></b></td>
@@ -43,11 +43,11 @@
     <br/>
     <h2>Pets and Visits</h2>
 
-    <table class="table table-striped">
+    <table class="table table-striped" >
         <c:forEach var="pet" items="${owner.pets}">
 
-            <tr>
-                <td valign="top">
+            <tr >
+                <td valign="top" >
                     <dl class="dl-horizontal">
                         <dt>Name</dt>
                         <dd><c:out value="${pet.name}"/></dd>
@@ -57,7 +57,7 @@
                         <dd><c:out value="${pet.type.name}"/></dd>
                     </dl>
                 </td>
-                <td valign="top">
+                <td valign="top" >
                     <table class="table-condensed">
                         <thead>
                         <tr>
@@ -72,7 +72,7 @@
                             </tr>
                         </c:forEach>
                         <tr>
-                            <td>
+                            <td >
                                 <spring:url value="/owners/{ownerId}/pets/{petId}/edit" var="petUrl">
                                     <spring:param name="ownerId" value="${owner.id}"/>
                                     <spring:param name="petId" value="${pet.id}"/>
