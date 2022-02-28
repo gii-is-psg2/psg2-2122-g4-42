@@ -52,6 +52,15 @@
         </roles>
         <timezone>Europe/Spain</timezone>
         </developer>
+        <developer>
+        <id>pabparmen</id>
+        <name>Pablo Parra Mendez</name>
+        <email>pabparmen@alum.us.es</email>
+        <roles>
+            <role>Developer</role>
+        </roles>
+        <timezone>Europe/Spain</timezone>
+        </developer>
     </developers>
     <properties>
 
