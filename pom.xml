@@ -61,6 +61,15 @@
         </roles>
         <timezone>Europe/Spain</timezone>
         </developer>
+        <developer>
+        <id>marsannar2</id>
+        <name>Mario Sánchez Naranjo</name>
+        <email>marsannar2@alum.us.es</email>
+        <roles>
+            <role>Developer</role>
+        </roles>
+        <timezone>Europe/Spain</timezone>
+        </developer>
     </developers>
     <properties>
 
