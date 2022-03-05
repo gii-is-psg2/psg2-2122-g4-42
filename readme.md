@@ -1,3 +1,5 @@
+[![Bluejay Dashboard](https://img.shields.io/badge/Bluejay-Dashboard_42-blue.svg)](http://dashboard.bluejay.governify.io/dashboard/script/dashboardLoader.js?dashboardURL=https://reporter.bluejay.governify.io/api/v4/dashboards/tpa-PSG2-2022-GH-gii-is-psg2_psg2-2122-g4-42/main)
+
 # Spring PetClinic Sample Application 
 
 This is a fork of https://github.com/spring-projects/spring-petclinic to be used for the PSG2 course. The main changes that have been performed were:
