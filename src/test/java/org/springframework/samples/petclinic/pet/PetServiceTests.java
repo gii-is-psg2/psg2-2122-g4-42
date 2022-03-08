@@ -16,6 +16,8 @@
 package org.springframework.samples.petclinic.pet;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -70,7 +72,7 @@ class PetServiceTests {
 	protected PetService petService;
         
         @Autowired
-	protected OwnerService ownerService;	
+	protected OwnerService ownerService;
 
 	@Test
 	void shouldFindPetWithCorrectId() {
@@ -88,6 +90,18 @@ class PetServiceTests {
 		assertThat(petType1.getName()).isEqualTo("cat");
 		PetType petType4 = EntityUtils.getById(petTypes, PetType.class, 4);
 		assertThat(petType4.getName()).isEqualTo("snake");
+	}
+
+	@Test
+	void shouldFindAllPets(){
+		Collection<Pet> pets = this.petService.findAllPets();
+		assertEquals(pets.size(), 13);
+	}
+
+	@Test
+	void shouldFindAllVisits(){
+		Collection<Visit> visits = this.petService.findVisits();
+		assertEquals(visits.size(), 4);
 	}
 
 	@Test
@@ -217,6 +231,53 @@ class PetServiceTests {
 		assertThat(visitArr[0].getPet()).isNotNull();
 		assertThat(visitArr[0].getDate()).isNotNull();
 		assertThat(visitArr[0].getPet().getId()).isEqualTo(7);
+	}
+
+	@Test
+	@Transactional
+	void shouldDeletePet(){
+		Collection<Pet> pets = this.petService.findAllPets();
+        int found = pets.size();
+
+        this.petService.deletePet(1);
+        pets = this.petService.findAllPets();
+        assertEquals(pets.size(), found - 1);
+	}
+	
+	@Test
+	@Transactional
+	void shouldDeletePets(){
+		Collection<Pet> pets = this.petService.findAllPets();
+        int found = pets.size();
+		assertNotEquals(found, 0);
+
+        this.petService.deleteAll();
+		pets = this.petService.findAllPets();
+        assertEquals(pets.size(), 0);
+	}
+
+	@Test
+	@Transactional
+	void shouldDeleteVisit(){
+		Collection<Visit> visits = this.petService.findVisits();
+        int found = visits.size();
+
+        this.petService.deleteVisit(1);
+        visits = this.petService.findVisits();
+
+        assertEquals(visits.size(), found - 1);
+	}
+	
+	@Test
+	@Transactional
+	void shouldDeleteVisits(){
+		Collection<Visit> visits = this.petService.findVisits();
+        int found = visits.size();
+		assertNotEquals(found, 0);
+
+        this.petService.deleteAllVisits();
+		visits = this.petService.findVisits();
+        assertEquals(visits.size(), 0);
 	}
 
 }

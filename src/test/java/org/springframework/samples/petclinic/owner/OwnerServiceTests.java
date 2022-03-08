@@ -16,6 +16,8 @@
 package org.springframework.samples.petclinic.owner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.Collection;
 
@@ -120,5 +122,27 @@ class OwnerServiceTests {
 		assertThat(owner.getLastName()).isEqualTo(newLastName);
 	}
 
+	@Test
+	@Transactional
+	void shouldDeleteOwner(){
+		Collection<Owner> owners = this.ownerService.findOwnerByLastName("");
+        int found = owners.size();
+
+        this.ownerService.deleteOwner(1);
+        owners = this.ownerService.findOwnerByLastName("");
+        assertEquals(owners.size(), found - 1);
+	}
+	
+	@Test
+	@Transactional
+	void shouldDeleteOwners(){
+		Collection<Owner> owners = this.ownerService.findOwnerByLastName("");
+        int found = owners.size();
+		assertNotEquals(found, 0);
+
+        this.ownerService.deleteAll();
+		owners = this.ownerService.findOwnerByLastName("");
+        assertEquals(owners.size(), 0);
+	}
 
 }

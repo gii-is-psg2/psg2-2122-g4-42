@@ -43,4 +43,28 @@ public interface VisitRepository extends Repository<Visit, Integer> {
 
 	List<Visit> findByPetId(Integer petId);
 
+	/**
+	 * Retrieve a <code>Visit</code> from the data store by id.
+	 * @param id the id to search for
+	 * @return the <code>Visit</code> if found
+	 * @throws org.springframework.dao.DataRetrievalFailureException if not found
+	 */
+	Visit findById(int id) throws DataAccessException;
+
+	/**
+	 * Find all <code>Visits</code> from the data store.
+	 */
+	List<Visit> findAll();
+
+	/**
+	 * Delete a <code>Visit</code> from the data store.
+	 * @param visit the <code>Visit</code> to delete
+	 */
+	void delete(Visit visit) throws DataAccessException;
+
+	/**
+	 * Delete all <code>Visits</code> from the data store.
+	 */
+	void deleteAll();
+
 }

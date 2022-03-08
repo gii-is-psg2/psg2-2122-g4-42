@@ -48,4 +48,15 @@ public class UserService {
 	public Optional<User> findUser(String username) {
 		return userRepository.findById(username);
 	}
+
+	@Transactional
+	public void deleteUser(String id) throws DataAccessException{
+		User user = userRepository.findById(id).get();
+		userRepository.delete(user);
+	}
+
+	@Transactional
+	public void findAll() throws DataAccessException{
+		userRepository.findAll();
+	}
 }

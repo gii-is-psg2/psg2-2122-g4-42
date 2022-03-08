@@ -46,10 +46,26 @@ public interface PetRepository extends Repository<Pet, Integer> {
 	Pet findById(int id) throws DataAccessException;
 
 	/**
+	 * Find all <code>Pets</code> from the data store.
+	 */
+	List<Pet> findAll();
+
+	/**
 	 * Save a <code>Pet</code> to the data store, either inserting or updating it.
 	 * @param pet the <code>Pet</code> to save
 	 * @see BaseEntity#isNew
 	 */
 	void save(Pet pet) throws DataAccessException;
+
+	/**
+	 * Delete a <code>Pet</code> from the data store.
+	 * @param pet the <code>Pet</code> to delete
+	 */
+	void delete(Pet pet) throws DataAccessException;
+
+	/**
+	 * Delete all <code>Pets</code> from the data store.
+	 */
+	void deleteAll();
 
 }
