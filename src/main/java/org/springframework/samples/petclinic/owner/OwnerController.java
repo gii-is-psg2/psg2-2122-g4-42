@@ -135,7 +135,7 @@ public class OwnerController {
 	@GetMapping(value = "/owners/{ownerId}/delete")
 	public String deleteOwner(@PathVariable("ownerId") int ownerId){
 		this.ownerService.deleteOwner(ownerId);
-		return "redirect:/welcome";
+		return "redirect:/owners";
 	}
 
 	/**
