@@ -19,6 +19,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.samples.petclinic.pet.exceptions.DuplicatedPetNameException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -99,9 +100,11 @@ public class PetService {
 	}
 
 	@Transactional
+	
 	public void deletePet(int id) throws DataAccessException{
-		Pet pet = petRepository.findById(id);
-		petRepository.delete(pet);
+		// Pet pet = petRepository.findById(id);
+		// petRepository.delete(pet);
+		petRepository.deleteById(id);
 	}
 
 	@Transactional
