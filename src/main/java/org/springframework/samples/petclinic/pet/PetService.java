@@ -16,10 +16,10 @@
 package org.springframework.samples.petclinic.pet;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.samples.petclinic.pet.exceptions.DuplicatedPetNameException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,8 +63,7 @@ public class PetService {
 
 	@Transactional
 	public void deleteVisit(int id) throws DataAccessException{
-		Visit visit = visitRepository.findById(id);
-		visitRepository.delete(visit);
+		visitRepository.deleteById(id);
 	}
 
 	@Transactional
@@ -102,8 +101,11 @@ public class PetService {
 	@Transactional
 	
 	public void deletePet(int id) throws DataAccessException{
-		// Pet pet = petRepository.findById(id);
-		// petRepository.delete(pet);
+		// we delete the visits before the pet due to the restrictions violations
+		List<Visit> visits = visitRepository.findByPetId(id);
+		for(Visit visit: visits){
+			visitRepository.deleteById(visit.getId());
+		}
 		petRepository.deleteById(id);
 	}
 

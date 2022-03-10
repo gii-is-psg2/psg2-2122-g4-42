@@ -60,16 +60,14 @@ public interface PetRepository extends Repository<Pet, Integer> {
 	void save(Pet pet) throws DataAccessException;
 
 	/**
-	 * Delete a <code>Pet</code> from the data store.
-	 * @param pet the <code>Pet</code> to delete
-	 */
-	void delete(Pet pet) throws DataAccessException;
-
-	/**
 	 * Delete all <code>Pets</code> from the data store.
 	 */
 	void deleteAll();
 
+	/**
+	 * Delete a <code>Pet</code> from the data store.
+	 * @param id the id to search for
+	 */
 	@Modifying
 	@Query("delete Pet p where p.id = :id")
 	void deleteById(@Param("id") int id);
