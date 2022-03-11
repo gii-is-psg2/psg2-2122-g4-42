@@ -38,22 +38,29 @@ public class PetService {
 	private VisitRepository visitRepository;
 	
 
+	
+
 	@Autowired
 	public PetService(PetRepository petRepository,
 			VisitRepository visitRepository) {
 		this.petRepository = petRepository;
 		this.visitRepository = visitRepository;
+		
 	}
 
 	@Transactional(readOnly = true)
 	public Collection<PetType> findPetTypes() throws DataAccessException {
 		return petRepository.findPetTypes();
 	}
+
+	
 	
 	@Transactional
 	public void saveVisit(Visit visit) throws DataAccessException {
 		visitRepository.save(visit);
 	}
+	
+
 
 	@Transactional(readOnly = true)
 	public Pet findPetById(int id) throws DataAccessException {
@@ -76,5 +83,7 @@ public class PetService {
 	public Collection<Visit> findVisitsByPetId(int petId) {
 		return visitRepository.findByPetId(petId);
 	}
+	
+
 
 }
