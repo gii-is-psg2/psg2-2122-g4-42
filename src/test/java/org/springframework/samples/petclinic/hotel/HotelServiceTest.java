@@ -1,13 +1,17 @@
 package org.springframework.samples.petclinic.hotel;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Collection;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.petclinic.util.EntityUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 public class HotelServiceTest {
@@ -43,6 +47,18 @@ public class HotelServiceTest {
 		assertThat(hotels1.size()).isEqualTo(2);
 		assertThat(hotels2.size()).isEqualTo(1);
 
+	}
+
+	@Test
+	@Transactional
+	void shouldDeleteHotel(){
+		Collection<Hotel> hotels = this.hotelService.findHotels();
+        int found = hotels.size();
+
+        this.hotelService.deleteHotel(1);
+        hotels = this.hotelService.findHotels();
+
+        assertEquals(hotels.size(), found - 1);
 	}
 	
 

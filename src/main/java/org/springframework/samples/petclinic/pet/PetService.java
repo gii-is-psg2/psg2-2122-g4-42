@@ -20,6 +20,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.hotel.Hotel;
+import org.springframework.samples.petclinic.hotel.HotelRepository;
 import org.springframework.samples.petclinic.pet.exceptions.DuplicatedPetNameException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,30 +40,25 @@ public class PetService {
 	
 	private VisitRepository visitRepository;
 	
-
-	
+	private HotelRepository hotelRepository;
 
 	@Autowired
 	public PetService(PetRepository petRepository,
-			VisitRepository visitRepository) {
+			VisitRepository visitRepository, HotelRepository hotelRepository) {
 		this.petRepository = petRepository;
 		this.visitRepository = visitRepository;
-		
+		this.hotelRepository = hotelRepository;
 	}
 
 	@Transactional(readOnly = true)
 	public Collection<PetType> findPetTypes() throws DataAccessException {
 		return petRepository.findPetTypes();
-	}
-
-	
+	}	
 	
 	@Transactional
 	public void saveVisit(Visit visit) throws DataAccessException {
 		visitRepository.save(visit);
 	}
-	
-
 
 	@Transactional(readOnly = true)
 	public Collection<Visit> findVisits() throws DataAccessException {
@@ -110,10 +107,15 @@ public class PetService {
 	@Transactional
 	
 	public void deletePet(int id) throws DataAccessException{
-		// we delete the visits before the pet due to the restrictions violations
+		// we delete the visits and the hotels before the pet due to the restrictions violations
 		List<Visit> visits = visitRepository.findByPetId(id);
 		for(Visit visit: visits){
 			visitRepository.deleteById(visit.getId());
+		}
+
+		List<Hotel> hotels = hotelRepository.findByPetId(id);
+		for(Hotel hotel: hotels){
+			hotelRepository.deleteById(hotel.getId());
 		}
 		petRepository.deleteById(id);
 	}

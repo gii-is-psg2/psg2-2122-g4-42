@@ -36,4 +36,14 @@ public class HotelService {
 		return hotelRepository.findById(id);
 	}
 
+	@Transactional(readOnly = true)
+	public Collection<Hotel> findHotels() throws DataAccessException {
+		return hotelRepository.findAll();
+	}
+
+	@Transactional
+	public void deleteHotel(int id) throws DataAccessException{
+		hotelRepository.deleteById(id);
+	}
+
 }
