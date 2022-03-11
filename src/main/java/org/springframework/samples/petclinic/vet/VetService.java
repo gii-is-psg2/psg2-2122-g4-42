@@ -44,4 +44,14 @@ public class VetService {
 		return vetRepository.findAll();
 	}	
 
+	@Transactional
+	public void deleteVet(int id) throws DataAccessException{
+		Vet vet = vetRepository.findById(id);
+		vetRepository.delete(vet);
+	}
+	@Transactional
+	public void deleteAll() throws DataAccessException{	
+		vetRepository.deleteAll();
+	}
+
 }

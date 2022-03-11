@@ -25,6 +25,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -67,7 +68,7 @@ public class Owner extends Person {
 	private Set<Pet> pets;
 	
 	//
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne()
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
 	//

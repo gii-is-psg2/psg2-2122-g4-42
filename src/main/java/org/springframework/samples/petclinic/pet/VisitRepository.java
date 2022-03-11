@@ -18,7 +18,10 @@ package org.springframework.samples.petclinic.pet;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.samples.petclinic.model.BaseEntity;
 
 /**
@@ -44,5 +47,31 @@ public interface VisitRepository extends Repository<Visit, Integer> {
 	List<Visit> findByPetId(Integer petId);
 	
 
+
+	/**
+	 * Retrieve a <code>Visit</code> from the data store by id.
+	 * @param id the id to search for
+	 * @return the <code>Visit</code> if found
+	 * @throws org.springframework.dao.DataRetrievalFailureException if not found
+	 */
+	Visit findById(int id) throws DataAccessException;
+
+	/**
+	 * Find all <code>Visits</code> from the data store.
+	 */
+	List<Visit> findAll();
+
+	/**
+	 * Delete all <code>Visits</code> from the data store.
+	 */
+	void deleteAll();
+
+	/**
+	 * Delete a <code>Visit</code> from the data store.
+	 * @param id the id to search for
+	 */
+	@Modifying
+	@Query("delete Visit v where v.id = :id")
+	void deleteById(@Param("id") int id);
 
 }
