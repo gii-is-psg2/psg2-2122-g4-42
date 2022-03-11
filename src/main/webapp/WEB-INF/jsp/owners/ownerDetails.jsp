@@ -95,7 +95,7 @@
         </c:forEach>
     </table>
     
-    <h2>Pets and Rooms</h2>
+    <h2>Reservas</h2>
 
     <table class="table table-striped" >
         <c:forEach var="pet" items="${owner.pets}">
@@ -103,11 +103,11 @@
             <tr >
                 <td valign="top" >
                     <dl class="dl-horizontal">
-                        <dt>Name</dt>
+                        <dt>Nombre</dt>
                         <dd><c:out value="${pet.name}"/></dd>
-                        <dt>Birth Date</dt>
+                        <dt>Cumpleaños</dt>
                         <dd><petclinic:localDate date="${pet.birthDate}" pattern="yyyy-MM-dd"/></dd>
-                        <dt>Type</dt>
+                        <dt>Tipo</dt>
                         <dd><c:out value="${pet.type.name}"/></dd>
                     </dl>
                 </td>
@@ -115,9 +115,9 @@
                     <table class="table-condensed">
                         <thead>
                         <tr>
-                        	<th>Room</th>
-                            <th>Booking Start Date</th>
-                            <th>Booking End Date</th>
+                        	<th>Habitación</th>
+                            <th>Fecha de entrada</th>
+                            <th>Fecha de salida</th>
                             
                         </tr>
                         </thead>
@@ -125,7 +125,7 @@
                             <tr>
                                 
                                 <td><c:out value="${hotel.room}"/></td>
-                                <td><petclinic:localDate date="${hotel.date}" pattern="yyyy-MM-dd"/></td>
+                                <td><petclinic:localDate date="${hotel.date1}" pattern="yyyy-MM-dd"/></td>
                                 <td><petclinic:localDate date="${hotel.date2}" pattern="yyyy-MM-dd"/></td>
                                 
                             </tr>
@@ -136,7 +136,7 @@
                                     <spring:param name="ownerId" value="${owner.id}"/>
                                     <spring:param name="petId" value="${pet.id}"/>
                                 </spring:url>
-                                <a href="${fn:escapeXml(hotelUrl)}">Book a room</a>
+                                <a href="${fn:escapeXml(hotelUrl)}">¡Reserva una habitación para esta mascota!</a>
                             </td>
                         </tr>
                     </table>

@@ -32,6 +32,13 @@ INSERT INTO types VALUES (4, 'snake');
 INSERT INTO types VALUES (5, 'bird');
 INSERT INTO types VALUES (6, 'hamster');
 
+INSERT INTO rooms VALUES (1, 'Habitacion_1');
+INSERT INTO rooms VALUES (2, 'Habitacion_2');
+INSERT INTO rooms VALUES (3, 'Habitacion_3');
+INSERT INTO rooms VALUES (4, 'Habitacion_4');
+INSERT INTO rooms VALUES (5, 'Habitacion_5');
+INSERT INTO rooms VALUES (6, 'Habitacion_6');
+
 INSERT INTO owners VALUES (1, 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023', 'owner1');
 INSERT INTO owners VALUES (2, 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', 'owner1');
 INSERT INTO owners VALUES (3, 'Eduardo', 'Rodriquez', '2693 Commerce St.', 'McFarland', '6085558763', 'owner1');
@@ -56,6 +63,12 @@ INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (10, 'Mulligan', '2
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (11, 'Freddy', '2010-03-09', 5, 9);
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (12, 'Lucky', '2010-06-24', 2, 10);
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (13, 'Sly', '2012-06-08', 1, 10);
+
+INSERT INTO hotels(id,name,date1,date2,pet_id,room_id) VALUES (1,'5EStrellas','2012-06-08','2012-07-25', 1,1);
+INSERT INTO hotels(id,name,date1,date2,pet_id,room_id) VALUES (2,'Alborán','2012-06-08','2012-07-25', 10,2);
+INSERT INTO hotels(id,name,date1,date2,pet_id,room_id) VALUES (3,'NH','2012-06-08','2012-07-25', 6,3);
+INSERT INTO hotels(id,name,date1,date2,pet_id,room_id) VALUES (4,'Caserio','2012-06-08','2012-07-25', 7,4);
+INSERT INTO hotels(id,name,date1,date2,pet_id,room_id) VALUES (5,'xx','2012-08-20','2012-09-25', 7,6);
 
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (1, 7, '2013-01-01', 'rabies shot');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02', 'rabies shot');
