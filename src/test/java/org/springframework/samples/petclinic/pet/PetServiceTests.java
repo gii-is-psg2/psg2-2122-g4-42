@@ -78,8 +78,8 @@ class PetServiceTests {
 	@Test
 	void shouldFindPetWithCorrectId() {
 		Pet pet7 = this.petService.findPetById(7);
-		assertThat(pet7.getName()).startsWith("Samantha");
-		assertThat(pet7.getOwner().getFirstName()).isEqualTo("Jean");
+		assertThat(pet7.getName()).startsWith("Samuel");
+		assertThat(pet7.getOwner().getFirstName()).isEqualTo("Juan");
 
 	}
 
@@ -88,9 +88,9 @@ class PetServiceTests {
 		Collection<PetType> petTypes = this.petService.findPetTypes();
 
 		PetType petType1 = EntityUtils.getById(petTypes, PetType.class, 1);
-		assertThat(petType1.getName()).isEqualTo("cat");
+		assertThat(petType1.getName()).isEqualTo("gato");
 		PetType petType4 = EntityUtils.getById(petTypes, PetType.class, 4);
-		assertThat(petType4.getName()).isEqualTo("snake");
+		assertThat(petType4.getName()).isEqualTo("serpiente");
 	}
 
 	@Test
