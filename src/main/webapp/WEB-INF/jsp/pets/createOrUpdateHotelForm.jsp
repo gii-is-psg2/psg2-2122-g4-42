@@ -1,4 +1,5 @@
 <%@ page session="false" trimDirectiveWhitespaces="true"%>
+<%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -17,16 +18,16 @@
     </jsp:attribute>
 	<jsp:body>
         <h2>
-			<c:if test="${hotel['new']}"> </c:if>RESERVA UNA HABITACIÓN PARA TU MASCOTA</h2>
+			<c:if test="${hotel['new']}"> </c:if>RESERVA UNA HABITACIÃ“N PARA TU MASCOTA</h2>
 
         <b>Mascota</b>
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Cumpleaños</th>
+                <th>Fecha de nacimiento</th>
                 <th>Tipo</th>
-                <th>Dueño</th>
+                <th>DueÃ±o</th>
             </tr>
             </thead>
             <tr>
@@ -55,7 +56,7 @@
                 <div class="col-sm-offset-2 col-sm-10">
                     <input type="hidden" name="petid"
 						value="${hotel.pet.id}" />
-                    <button class="btn btn-default" type="submit">¡Añade tu reserva!</button>
+                    <button class="btn btn-default" type="submit">Â¡AÃ±ade tu reserva!</button>
                 </div>
             </div>
         </form:form>
@@ -64,7 +65,7 @@
         <b>Reservas anteriores</b>
         <table class="table table-striped">
             <tr>
-                <th>Habitación</th>
+                <th>HabitaciÃ³n</th>
                 <th>Fecha de entrada</th>
                 <th>Fecha de salida</th>
             </tr>
