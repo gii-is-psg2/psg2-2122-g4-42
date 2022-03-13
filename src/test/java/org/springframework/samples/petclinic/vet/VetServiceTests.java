@@ -16,6 +16,8 @@
 package org.springframework.samples.petclinic.vet;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.Collection;
 
@@ -27,6 +29,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.petclinic.util.EntityUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 /**
  * Integration test of the Service and the Repository layer.
@@ -81,6 +85,7 @@ class VetServiceTests {
 		String oldLastName = vet.getLastName();
 		String newLastName = oldLastName + "X";
 
+
 		vet.setLastName(newLastName);
 		this.vetService.saveVet(vet);
 
@@ -88,5 +93,29 @@ class VetServiceTests {
 		vet = this.vetService.findById(1);
 		assertThat(vet.getLastName()).isEqualTo(newLastName);
 	}
+
+	@Test
+	@Transactional
+	void shouldDeleteVet(){
+		Collection<Vet> vets = this.vetService.findVets();
+        int found = vets.size();
+
+        this.vetService.deleteVet(1);
+        vets = this.vetService.findVets();
+        assertEquals(vets.size(), found - 1);
+	}
+	
+	@Test
+	@Transactional
+	void shouldDeleteVets(){
+		Collection<Vet> vets = this.vetService.findVets();
+        int found = vets.size();
+		assertNotEquals(found, 0);
+
+        this.vetService.deleteAll();
+		vets = this.vetService.findVets();
+        assertEquals(vets.size(), 0);
+	}
+
 
 }

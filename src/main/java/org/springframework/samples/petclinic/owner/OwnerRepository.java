@@ -59,4 +59,15 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	@Query("SELECT owner FROM Owner owner left join fetch owner.pets WHERE owner.id =:id")
 	public Owner findById(@Param("id") int id);
 
+	/**
+	 * Delete an <code>Owner</code> from the data store.
+	 * @param owner the <code>Owner</code> to delete
+	 */
+	void delete(Owner owner) throws DataAccessException;
+
+	/**
+	 * Delete all <code>Owners</code> from the data store.
+	 */
+	void deleteAll();
+
 }

@@ -138,4 +138,10 @@ public class VetController {
 	}
 	
 
+	@GetMapping(value = "/vets/{vetId}/delete")
+    public String deleteVisit(@PathVariable("vetId") int vetId){
+        this.vetService.deleteVet(vetId);
+        return "redirect:/vets";
+    }
+
 }

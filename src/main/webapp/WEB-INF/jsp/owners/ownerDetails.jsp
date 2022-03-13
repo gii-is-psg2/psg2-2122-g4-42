@@ -1,3 +1,4 @@
+
 <%@ page session="false" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -33,6 +34,11 @@
     </spring:url>
     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Edit Owner</a>
 
+    <spring:url value="{ownerId}/delete" var="deleteUrl">
+        <spring:param name="ownerId" value="${owner.id}"/>
+    </spring:url>
+    <a href="${fn:escapeXml(deleteUrl)}" class="btn btn-default">Delete Owner</a>
+  
     <spring:url value="{ownerId}/pets/new" var="addUrl">
         <spring:param name="ownerId" value="${owner.id}"/>
     </spring:url>
@@ -49,6 +55,13 @@
             <tr >
                 <td valign="top" >
                     <dl class="dl-horizontal">
+                        <dt>Â¿Eliminar mascota?</dt>
+                        <dd><spring:url value="/owners/{ownerId}/pets/{petId}/delete" var="petUrl">
+                                <spring:param name="ownerId" value="${owner.id}"/>
+                                <spring:param name="petId" value="${pet.id}"/>
+                            </spring:url>
+                            <a href="${fn:escapeXml(petUrl)}">Delete Pet</a></dd>
+                            
                         <dt>Name</dt>
                         <dd><c:out value="${pet.name}"/></dd>
                         <dt>Birth Date</dt>
@@ -63,12 +76,19 @@
                         <tr>
                             <th>Visit Date</th>
                             <th>Description</th>
+                            <th>Delete visit</th>
                         </tr>
                         </thead>
                         <c:forEach var="visit" items="${pet.visits}">
                             <tr>
                                 <td><petclinic:localDate date="${visit.date}" pattern="yyyy-MM-dd"/></td>
                                 <td><c:out value="${visit.description}"/></td>
+                                <td><spring:url value="/owners/{ownerId}/pets/{petId}/visits/{visitId}/delete" var="visitDeleteUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>
+                                    <spring:param name="petId" value="${pet.id}"/>
+                                    <spring:param name="visitId" value="${visit.id}"/>
+                                </spring:url>
+                                <a href="${fn:escapeXml(visitDeleteUrl)}">Delete Visit</a></td>
                             </tr>
                         </c:forEach>
                         <tr>
@@ -85,6 +105,57 @@
                                     <spring:param name="petId" value="${pet.id}"/>
                                 </spring:url>
                                 <a href="${fn:escapeXml(visitUrl)}">Add Visit</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+        </c:forEach>
+    </table>
+    
+    <h2>Reservas</h2>
+
+    <table class="table table-striped" >
+        <c:forEach var="pet" items="${owner.pets}">
+
+            <tr >
+                <td valign="top" >
+                    <dl class="dl-horizontal">
+                        <dt>Nombre</dt>
+                        <dd><c:out value="${pet.name}"/></dd>
+                        <dt>Cumpleaños</dt>
+                        <dd><petclinic:localDate date="${pet.birthDate}" pattern="yyyy-MM-dd"/></dd>
+                        <dt>Tipo</dt>
+                        <dd><c:out value="${pet.type.name}"/></dd>
+                    </dl>
+                </td>
+                <td valign="top" >
+                    <table class="table-condensed">
+                        <thead>
+                        <tr>
+                        	<th>Habitación</th>
+                            <th>Fecha de entrada</th>
+                            <th>Fecha de salida</th>
+                            
+                        </tr>
+                        </thead>
+                        <c:forEach var="hotel" items="${pet.hotels}">
+                            <tr>
+                                
+                                <td><c:out value="${hotel.room}"/></td>
+                                <td><petclinic:localDate date="${hotel.date1}" pattern="yyyy-MM-dd"/></td>
+                                <td><petclinic:localDate date="${hotel.date2}" pattern="yyyy-MM-dd"/></td>
+                                
+                            </tr>
+                        </c:forEach>
+                        <tr>
+                            <td>
+                                <spring:url value="/owners/{ownerId}/pets/{petId}/hotel/new" var="hotelUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>
+                                    <spring:param name="petId" value="${pet.id}"/>
+                                </spring:url>
+                                <a href="${fn:escapeXml(hotelUrl)}">¡Reserva una habitación para esta mascota!</a>
                             </td>
                         </tr>
                     </table>

@@ -13,8 +13,12 @@
         <tr>
             <th>Name</th>
             <th>Specialties</th>
+
             <th>Add specialty</th>
             <th>Update Vet</th>
+
+            <th>Delete Vet</th>
+
         </tr>
         </thead>
         <tbody>
@@ -29,6 +33,7 @@
                     </c:forEach>
                     <c:if test="${vet.nrOfSpecialties == 0}">none</c:if>
                 </td>
+
                 <td>
                     <a href='<spring:url value="/vets/${vet.id}/specialties/edit" htmlEscape="true"/>'>Add specialty</a>
                 </td>
@@ -38,6 +43,12 @@
                     </spring:url>
                     <a href="${fn:escapeXml(vetUpdateUrl)}">Update Vet</a>
                 </td>
+
+                <td><spring:url value="/vets/{vetId}/delete" var="vetDeleteUrl">
+                    <spring:param name="vetId" value="${vet.id}"/>
+                </spring:url>
+                <a href="${fn:escapeXml(vetDeleteUrl)}">Delete Vet</a></td>
+
             </tr>
         </c:forEach>
         </tbody>

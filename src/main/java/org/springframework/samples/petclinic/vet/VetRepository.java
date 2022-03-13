@@ -39,8 +39,29 @@ public interface VetRepository extends Repository<Vet, Integer>{
 	 */
 	Collection<Vet> findAll() throws DataAccessException;
 
+
 	void save(Vet vet) throws DataAccessException;
 
 	Vet findById(Integer id);
+
+	/**
+	 * Retrieve a <code>Vet</code> from the data store by id.
+	 * @param id the id to search for
+	 * @return the <code>Vet</code> if found
+	 * @throws org.springframework.dao.DataRetrievalFailureException if not found
+	 */
+	Vet findById(int id) throws DataAccessException;
+
+	/**
+	 * Delete a <code>Vet</code> from the data store.
+	 * @param vet the <code>Vet</code> to delete
+	 */
+	void delete(Vet vet) throws DataAccessException;
+
+	/**
+	 * Delete all <code>Vets</code> from the data store.
+	 */
+	void deleteAll() throws DataAccessException;
+
 
 }
