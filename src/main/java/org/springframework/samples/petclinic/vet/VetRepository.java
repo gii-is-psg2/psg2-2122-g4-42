@@ -39,6 +39,11 @@ public interface VetRepository extends Repository<Vet, Integer>{
 	 */
 	Collection<Vet> findAll() throws DataAccessException;
 
+
+	void save(Vet vet) throws DataAccessException;
+
+	Vet findById(Integer id);
+
 	/**
 	 * Retrieve a <code>Vet</code> from the data store by id.
 	 * @param id the id to search for
@@ -57,5 +62,6 @@ public interface VetRepository extends Repository<Vet, Integer>{
 	 * Delete all <code>Vets</code> from the data store.
 	 */
 	void deleteAll() throws DataAccessException;
+
 
 }

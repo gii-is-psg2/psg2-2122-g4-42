@@ -21,6 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.Collection;
 
+import javax.transaction.Transactional;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -75,6 +77,21 @@ class VetServiceTests {
 		assertThat(vet.getNrOfSpecialties()).isEqualTo(2);
 		assertThat(vet.getSpecialties().get(0).getName()).isEqualTo("dentistry");
 		assertThat(vet.getSpecialties().get(1).getName()).isEqualTo("surgery");
+	}
+	@Test
+	@Transactional
+	void shouldUpdateVet() {
+		Vet vet = this.vetService.findById(1);
+		String oldLastName = vet.getLastName();
+		String newLastName = oldLastName + "X";
+
+
+		vet.setLastName(newLastName);
+		this.vetService.saveVet(vet);
+
+		// retrieving new name from database
+		vet = this.vetService.findById(1);
+		assertThat(vet.getLastName()).isEqualTo(newLastName);
 	}
 
 	@Test
