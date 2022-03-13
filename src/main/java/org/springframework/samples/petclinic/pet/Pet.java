@@ -34,6 +34,7 @@ import javax.persistence.Table;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.samples.petclinic.hotel.Hotel;
 import org.springframework.samples.petclinic.model.NamedEntity;
 import org.springframework.samples.petclinic.owner.Owner;
 
@@ -62,6 +63,9 @@ public class Pet extends NamedEntity {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
 	private Set<Visit> visits;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
+	private Set<Hotel> hotels;
 
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
@@ -93,6 +97,14 @@ public class Pet extends NamedEntity {
 		}
 		return this.visits;
 	}
+	
+	protected Set<Hotel> getHotelInternal() {
+		if (this.hotels == null) {
+			this.hotels = new HashSet<>();
+		}
+		return this.hotels;
+	}
+	
 
 	protected void setVisitsInternal(Set<Visit> visits) {
 		this.visits = visits;
@@ -103,10 +115,21 @@ public class Pet extends NamedEntity {
 		PropertyComparator.sort(sortedVisits, new MutableSortDefinition("date", false, false));
 		return Collections.unmodifiableList(sortedVisits);
 	}
+	
+	public List<Hotel> getHotels() {
+		List<Hotel> sortedHotels = new ArrayList<>(getHotelInternal());
+		PropertyComparator.sort(sortedHotels, new MutableSortDefinition("date", false, false));
+		return Collections.unmodifiableList(sortedHotels);
+	}
 
 	public void addVisit(Visit visit) {
 		getVisitsInternal().add(visit);
 		visit.setPet(this);
+	}
+	
+	public void addHotel(Hotel hotel) {
+		getHotelInternal().add(hotel);
+		hotel.setPet(this);
 	}
 
 }

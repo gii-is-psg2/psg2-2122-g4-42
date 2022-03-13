@@ -64,6 +64,17 @@ public class OwnerService {
 		userService.saveUser(owner.getUser());
 		//creating authorities
 		authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
-	}		
+	}	
+	
+	@Transactional
+	public void deleteOwner(int id) throws DataAccessException{
+		Owner owner = ownerRepository.findById(id);
+		ownerRepository.delete(owner);
+	}
+
+	@Transactional
+	public void deleteAll(){
+		ownerRepository.deleteAll();
+	}
 
 }

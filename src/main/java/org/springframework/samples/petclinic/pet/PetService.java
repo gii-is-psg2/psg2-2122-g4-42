@@ -16,9 +16,12 @@
 package org.springframework.samples.petclinic.pet;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.hotel.Hotel;
+import org.springframework.samples.petclinic.hotel.HotelRepository;
 import org.springframework.samples.petclinic.pet.exceptions.DuplicatedPetNameException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,18 +40,20 @@ public class PetService {
 	
 	private VisitRepository visitRepository;
 	
+	private HotelRepository hotelRepository;
 
 	@Autowired
 	public PetService(PetRepository petRepository,
-			VisitRepository visitRepository) {
+			VisitRepository visitRepository, HotelRepository hotelRepository) {
 		this.petRepository = petRepository;
 		this.visitRepository = visitRepository;
+		this.hotelRepository = hotelRepository;
 	}
 
 	@Transactional(readOnly = true)
 	public Collection<PetType> findPetTypes() throws DataAccessException {
 		return petRepository.findPetTypes();
-	}
+	}	
 	
 	@Transactional
 	public void saveVisit(Visit visit) throws DataAccessException {
@@ -56,8 +61,28 @@ public class PetService {
 	}
 
 	@Transactional(readOnly = true)
+	public Collection<Visit> findVisits() throws DataAccessException {
+		return visitRepository.findAll();
+	}
+
+	@Transactional
+	public void deleteVisit(int id) throws DataAccessException{
+		visitRepository.deleteById(id);
+	}
+
+	@Transactional
+	public void deleteAllVisits(){
+		petRepository.deleteAll();
+	}
+
+	@Transactional(readOnly = true)
 	public Pet findPetById(int id) throws DataAccessException {
 		return petRepository.findById(id);
+	}
+
+	@Transactional(readOnly = true)
+	public Collection<Pet> findAllPets() {
+		return petRepository.findAll();
 	}
 
 	@Transactional(rollbackFor = DuplicatedPetNameException.class)
@@ -75,6 +100,29 @@ public class PetService {
 
 	public Collection<Visit> findVisitsByPetId(int petId) {
 		return visitRepository.findByPetId(petId);
+	}
+	
+
+
+	@Transactional
+	
+	public void deletePet(int id) throws DataAccessException{
+		// we delete the visits and the hotels before the pet due to the restrictions violations
+		List<Visit> visits = visitRepository.findByPetId(id);
+		for(Visit visit: visits){
+			visitRepository.deleteById(visit.getId());
+		}
+
+		List<Hotel> hotels = hotelRepository.findByPetId(id);
+		for(Hotel hotel: hotels){
+			hotelRepository.deleteById(hotel.getId());
+		}
+		petRepository.deleteById(id);
+	}
+
+	@Transactional
+	public void deleteAll(){
+		petRepository.deleteAll();
 	}
 
 }
