@@ -75,3 +75,6 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'castracion');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'esterilizacion');
 
+INSERT INTO causes(id,name,description,money_raised,budget_target,organization) VALUES (1, 'Parvovirosis', 'Esta ayuda va destinada a curar a perros con la enfermedad de parvovirosis', 0, 2000, 'Arca de Noe');
+INSERT INTO causes(id,name,description,money_raised,budget_target,organization) VALUES (2, 'Refugio de perros y gatos', 'Esta ayuda va destinada a la asociacion El Trasgu, la cual trabaja para evitar que mas perros y gatos sean abandonados en Espana.', 0, 3000, 'El Trasgu');
+INSERT INTO causes(id,name,description,money_raised,budget_target,organization) VALUES (3, 'Fondos para APAP', 'ASAP se trata de un centro de acogida y adopcion donde trabajan voluntarios que procuran comida, refugio, limpieza, atencion sanitaria y ejercicio a los perros rescatados.', 0, 1500, 'Asociacion Protectora de Animales y Plantas (APAP Alcala)');
