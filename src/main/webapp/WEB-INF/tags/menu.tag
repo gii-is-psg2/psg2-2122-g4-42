@@ -42,7 +42,7 @@
 
 				<petclinic:menuItem active="${name eq 'adoptions'}" url="/adoptions"
 					title="adoptions">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
 					<span>Adopciones</span>
 				</petclinic:menuItem>
 

@@ -76,4 +76,5 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'esterilizacion');
 
 INSERT INTO adoptions(id,description,pet_id) VALUES (1, 'No estamos en casa tanto y pasa solo mucho tiempo',1);
+INSERT INTO adoptions(id,description,pet_id) VALUES (2, 'No tenemos ingresos y no podemos manternerlo',2);
 
