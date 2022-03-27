@@ -20,6 +20,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.adoption.Adoption;
+import org.springframework.samples.petclinic.adoption.AdoptionRepository;
 import org.springframework.samples.petclinic.hotel.Hotel;
 import org.springframework.samples.petclinic.hotel.HotelRepository;
 import org.springframework.samples.petclinic.pet.exceptions.DuplicatedPetNameException;
@@ -42,12 +44,15 @@ public class PetService {
 	
 	private HotelRepository hotelRepository;
 
+	private AdoptionRepository adoptionRepository;
+
 	@Autowired
 	public PetService(PetRepository petRepository,
-			VisitRepository visitRepository, HotelRepository hotelRepository) {
+			VisitRepository visitRepository, HotelRepository hotelRepository, AdoptionRepository adoptionRepository) {
 		this.petRepository = petRepository;
 		this.visitRepository = visitRepository;
 		this.hotelRepository = hotelRepository;
+		this.adoptionRepository = adoptionRepository;
 	}
 
 	@Transactional(readOnly = true)
@@ -117,6 +122,9 @@ public class PetService {
 		for(Hotel hotel: hotels){
 			hotelRepository.deleteById(hotel.getId());
 		}
+
+		Adoption adoption = adoptionRepository.findByPetId(id);
+		adoptionRepository.deleteById(adoption.getId());
 		petRepository.deleteById(id);
 	}
 

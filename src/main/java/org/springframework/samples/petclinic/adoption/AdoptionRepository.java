@@ -14,6 +14,8 @@ public interface AdoptionRepository extends Repository<Adoption,Integer>{
 
     List<Adoption> findAll();
 
+    Adoption findByPetId(Integer petId);
+
     @Modifying
     @Query("DELETE Adoption a WHERE a.id = :id")
     void deleteById(@Param("id") int id);

@@ -32,7 +32,7 @@ public class AdoptionServiceTests {
     @Test
     void shouldFindAllAdoptions(){
         List<Adoption> adoptions = this.adoptionService.findAllAdoptions();
-        assertEquals(adoptions.size(), 1);
+        assertEquals(adoptions.size(), 2);
     }
 
     @Test

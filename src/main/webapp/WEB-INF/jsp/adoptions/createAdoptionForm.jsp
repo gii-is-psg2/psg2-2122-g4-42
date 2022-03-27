@@ -13,12 +13,21 @@ tagdir="/WEB-INF/tags" %>
     <div class="form-group has-feedback">
       <petclinic:inputField label="Descripción" name="description" />
       <div class="control-group">
-        <petclinic:selectField name="pet" label="Pet " names="${pets}" size="5"/>
-    </div>
+        <label class="col-sm-2 control-label">Pet </label>
+        <div class="col-sm-10">
+          <select name="pet" id="pet" class="form-control" size="3">
+            <c:forEach items="${pets}" var="pet">
+              <option value="${pet.id}">${pet.name}</option>
+            </c:forEach>
+          </select>
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <button class="btn btn-default" type="submit">Formalizar adopción</button>
+        <button class="btn btn-default" type="submit">
+          Formalizar adopción
+        </button>
       </div>
     </div>
   </form:form>
