@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.adoption.Adoption;
 import org.springframework.samples.petclinic.adoption.AdoptionRepository;
+import org.springframework.samples.petclinic.adoption.RequestAdoptionRepository;
 import org.springframework.samples.petclinic.hotel.Hotel;
 import org.springframework.samples.petclinic.hotel.HotelRepository;
 import org.springframework.samples.petclinic.pet.exceptions.DuplicatedPetNameException;
@@ -39,27 +40,31 @@ import org.springframework.util.StringUtils;
 public class PetService {
 
 	private PetRepository petRepository;
-	
+
 	private VisitRepository visitRepository;
-	
+
 	private HotelRepository hotelRepository;
 
 	private AdoptionRepository adoptionRepository;
 
+	private RequestAdoptionRepository requestAdoptionRepository;
+
 	@Autowired
 	public PetService(PetRepository petRepository,
-			VisitRepository visitRepository, HotelRepository hotelRepository, AdoptionRepository adoptionRepository) {
+			VisitRepository visitRepository, HotelRepository hotelRepository, AdoptionRepository adoptionRepository,
+			RequestAdoptionRepository requestAdoptionRepository) {
 		this.petRepository = petRepository;
 		this.visitRepository = visitRepository;
 		this.hotelRepository = hotelRepository;
 		this.adoptionRepository = adoptionRepository;
+		this.requestAdoptionRepository = requestAdoptionRepository;
 	}
 
 	@Transactional(readOnly = true)
 	public Collection<PetType> findPetTypes() throws DataAccessException {
 		return petRepository.findPetTypes();
-	}	
-	
+	}
+
 	@Transactional
 	public void saveVisit(Visit visit) throws DataAccessException {
 		visitRepository.save(visit);
@@ -71,12 +76,12 @@ public class PetService {
 	}
 
 	@Transactional
-	public void deleteVisit(int id) throws DataAccessException{
+	public void deleteVisit(int id) throws DataAccessException {
 		visitRepository.deleteById(id);
 	}
 
 	@Transactional
-	public void deleteAllVisits(){
+	public void deleteAllVisits() {
 		petRepository.deleteAll();
 	}
 
@@ -92,44 +97,42 @@ public class PetService {
 
 	@Transactional(rollbackFor = DuplicatedPetNameException.class)
 	public void savePet(Pet pet) throws DataAccessException, DuplicatedPetNameException {
-			if(pet.getOwner()!=null){
-				Pet otherPet=pet.getOwner().getPetwithIdDifferent(pet.getName(), pet.getId());
-            	if (StringUtils.hasLength(pet.getName()) &&  (otherPet!= null && otherPet.getId()!=pet.getId())) {            	
-            		throw new DuplicatedPetNameException();
-            	}else
-                	petRepository.save(pet);                
-			}else
+		if (pet.getOwner() != null) {
+			Pet otherPet = pet.getOwner().getPetwithIdDifferent(pet.getName(), pet.getId());
+			if (StringUtils.hasLength(pet.getName()) && (otherPet != null && otherPet.getId() != pet.getId())) {
+				throw new DuplicatedPetNameException();
+			} else
 				petRepository.save(pet);
+		} else
+			petRepository.save(pet);
 	}
-
 
 	public Collection<Visit> findVisitsByPetId(int petId) {
 		return visitRepository.findByPetId(petId);
 	}
-	
-
 
 	@Transactional
-	
-	public void deletePet(int id) throws DataAccessException{
-		// we delete the visits and the hotels before the pet due to the restrictions violations
+	public void deletePet(int id) throws DataAccessException {
+		// we delete the visits and the hotels before the pet due to the restrictions
+		// violations
 		List<Visit> visits = visitRepository.findByPetId(id);
-		for(Visit visit: visits){
+		for (Visit visit : visits) {
 			visitRepository.deleteById(visit.getId());
 		}
 
 		List<Hotel> hotels = hotelRepository.findByPetId(id);
-		for(Hotel hotel: hotels){
+		for (Hotel hotel : hotels) {
 			hotelRepository.deleteById(hotel.getId());
 		}
 
 		Adoption adoption = adoptionRepository.findByPetId(id);
+		adoption.getRequestAdoptions().stream().forEach(a -> this.requestAdoptionRepository.deleteById(a.getId()));
 		adoptionRepository.deleteById(adoption.getId());
 		petRepository.deleteById(id);
 	}
 
 	@Transactional
-	public void deleteAll(){
+	public void deleteAll() {
 		petRepository.deleteAll();
 	}
 

@@ -20,6 +20,8 @@ public interface AdoptionRepository extends Repository<Adoption,Integer>{
     @Query("DELETE Adoption a WHERE a.id = :id")
     void deleteById(@Param("id") int id);
 
+    @Modifying
+    @Query("DELETE FROM Adoption a")
     void deleteAll();
     
 }

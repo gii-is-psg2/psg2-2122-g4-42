@@ -95,8 +95,10 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04',
 
 INSERT INTO adoptions(id,description,pet_id) VALUES (1, 'No estamos en casa tanto y pasa solo mucho tiempo',1);
 INSERT INTO adoptions(id,description,pet_id) VALUES (2, 'No tenemos ingresos y no podemos manternerlo',2);
+INSERT INTO adoptions(id,description,pet_id) VALUES (3, 'Lo encontramos en la calle y no podemos quedarnoslo',3);
+INSERT INTO adoptions(id,description,pet_id) VALUES (4, 'Era de mi hija que ya no está y no podemos cuidarlo',4);
 
-INSERT INTO request_adoptions(id,description,status,owner_id) VALUES (1, 'Me siento muy solo y necesito compania, prometo cuidarlo y darle mucho amor', 2, 5);
-
-INSERT INTO adoptions_request_adoptions(adoption_id,request_adoptions_id) VALUES (1, 1);
+INSERT INTO request_adoptions(id,description,status,owner_id,adoption_id) VALUES (1, 'Me siento muy solo y necesito compania, prometo cuidarlo y darle mucho amor', 2, 5, 1);
+INSERT INTO request_adoptions(id,description,status,owner_id,adoption_id) VALUES (2, 'Estoy buscando un perro para mi hijo pequeno', 2, 7, 1);
+INSERT INTO request_adoptions(id,description,status,owner_id,adoption_id) VALUES (3, 'Quiero regalarle a mi madre una mascota para que este mas entretenida', 2, 9, 3);
 

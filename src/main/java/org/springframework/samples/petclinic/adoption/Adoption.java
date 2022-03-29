@@ -30,8 +30,7 @@ public class Adoption extends BaseEntity{
     @JoinColumn(name = "pet_id")
     private Pet pet;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "adoption", cascade = CascadeType.REMOVE)
     private Collection<RequestAdoption> requestAdoptions;
-
-    
+   
 }

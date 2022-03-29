@@ -145,7 +145,7 @@ public class AdoptionController {
     @GetMapping(value = "/adoptions/acceptRequest/{requestAdoptionId}")
     public String acceptRequest(@PathVariable("requestAdoptionId") int requestAdoptionId) {
         RequestAdoption requestAdoption = this.requestAdoptionService.findRequestAdoptionById(requestAdoptionId);
-        requestAdoption.setStatus(Status.APPROVED);
+        // requestAdoption.setStatus(Status.APPROVED);
         Adoption adoption = this.adoptionService.findAllAdoptions().stream()
                 .filter(a -> a.getRequestAdoptions().contains(requestAdoption))
                 .collect(Collectors.toList()).get(0);
@@ -167,6 +167,51 @@ public class AdoptionController {
         requestAdoption.setStatus(Status.DENIED);
         this.requestAdoptionService.saveRequestAdoption(requestAdoption);
         return "redirect:/adoptions";
+    }
+
+    @GetMapping(value = "/adoptions/{adoptionId}/request")
+    public String initCreationFormRequestAdoption(Map<String, Object> model) {
+        RequestAdoption requestAdoption = new RequestAdoption();
+        model.put("requestAdoption", requestAdoption);
+
+        return "adoptions/createRequestAdoptionForm";
+    }
+
+    @PostMapping(value = "/adoptions/{adoptionId}/request")
+    public String createRequestForm(@PathVariable("adoptionId") int adoptionId, @Valid RequestAdoption requestAdoption,
+            BindingResult result, Map<String, Object> model) {
+        Adoption adoption = this.adoptionService.findAdoptionById(adoptionId);
+        Collection<RequestAdoption> requests = adoption.getRequestAdoptions();
+
+        Owner owner = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User user = this.userService.findByUsername(username);
+        Set<Authorities> authorities = user.getAuthorities();
+        for (Authorities authority : authorities) {
+            if (authority.getAuthority().equals("owner")) {
+                owner = this.ownerService.findByUsername(username);
+            }
+        }
+
+        if (result.hasErrors()) {
+            if (requestAdoption.getStatus() == null) {
+                requestAdoption.setStatus(Status.WAITING);
+                requestAdoption.setOwner(owner);
+                requestAdoption.setAdoption(adoption);
+                requests.add(requestAdoption);
+                adoption.setRequestAdoptions(requests);
+                this.requestAdoptionService.saveRequestAdoption(requestAdoption);
+                return "redirect:/adoptions";
+            }
+            model.put("requestAdoption", requestAdoption);
+            return "adoptions/createRequestAdoptionForm";
+        } else {
+            requests.add(requestAdoption);
+            adoption.setRequestAdoptions(requests);
+            this.requestAdoptionService.saveRequestAdoption(requestAdoption);
+            return "redirect:/adoptions";
+        }
     }
 
 }

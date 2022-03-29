@@ -41,48 +41,48 @@ public class RequestAdoptionController {
         this.ownerService = ownerService;
     }
 
-    @GetMapping(value = "/adoptions/{adoptionId}/request")
-    public String initCreationForm(Map<String, Object> model) {
-        RequestAdoption requestAdoption = new RequestAdoption();
-        model.put("requestAdoption", requestAdoption);
+    // @GetMapping(value = "/adoptions/{adoptionId}/request")
+    // public String initCreationForm(Map<String, Object> model) {
+    //     RequestAdoption requestAdoption = new RequestAdoption();
+    //     model.put("requestAdoption", requestAdoption);
 
-        return "adoptions/createRequestAdoptionForm";
-    }
+    //     return "adoptions/createRequestAdoptionForm";
+    // }
 
-    @PostMapping(value = "/adoptions/{adoptionId}/request")
-    public String createRequestForm(@PathVariable("adoptionId") int adoptionId, @Valid RequestAdoption requestAdoption,
-            BindingResult result, Map<String, Object> model) {
-        Adoption adoption = this.adoptionService.findAdoptionById(adoptionId);
-        Collection<RequestAdoption> requests = adoption.getRequestAdoptions();
+    // @PostMapping(value = "/adoptions/{adoptionId}/request")
+    // public String createRequestForm(@PathVariable("adoptionId") int adoptionId, @Valid RequestAdoption requestAdoption,
+    //         BindingResult result, Map<String, Object> model) {
+    //     Adoption adoption = this.adoptionService.findAdoptionById(adoptionId);
+    //     Collection<RequestAdoption> requests = adoption.getRequestAdoptions();
 
-        Owner owner = null;
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        User user = this.userService.findByUsername(username);
-        Set<Authorities> authorities = user.getAuthorities();
-        for (Authorities authority : authorities) {
-            if (authority.getAuthority().equals("owner")) {
-                owner = this.ownerService.findByUsername(username);
-            }
-        }
+    //     Owner owner = null;
+    //     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    //     String username = authentication.getName();
+    //     User user = this.userService.findByUsername(username);
+    //     Set<Authorities> authorities = user.getAuthorities();
+    //     for (Authorities authority : authorities) {
+    //         if (authority.getAuthority().equals("owner")) {
+    //             owner = this.ownerService.findByUsername(username);
+    //         }
+    //     }
 
-        if (result.hasErrors()) {
-            if (requestAdoption.getStatus() == null) {
-                requestAdoption.setStatus(Status.WAITING);
-                requestAdoption.setOwner(owner);
-                requests.add(requestAdoption);
-                adoption.setRequestAdoptions(requests);
-                this.requestAdoptionService.saveRequestAdoption(requestAdoption);
-                return "redirect:/adoptions";
-            }
-            model.put("requestAdoption", requestAdoption);
-            return "adoptions/createRequestAdoptionForm";
-        } else {
-            requests.add(requestAdoption);
-            adoption.setRequestAdoptions(requests);
-            this.requestAdoptionService.saveRequestAdoption(requestAdoption);
-            return "redirect:/adoptions";
-        }
-    }
+    //     if (result.hasErrors()) {
+    //         if (requestAdoption.getStatus() == null) {
+    //             requestAdoption.setStatus(Status.WAITING);
+    //             requestAdoption.setOwner(owner);
+    //             requests.add(requestAdoption);
+    //             adoption.setRequestAdoptions(requests);
+    //             this.requestAdoptionService.saveRequestAdoption(requestAdoption);
+    //             return "redirect:/adoptions";
+    //         }
+    //         model.put("requestAdoption", requestAdoption);
+    //         return "adoptions/createRequestAdoptionForm";
+    //     } else {
+    //         requests.add(requestAdoption);
+    //         adoption.setRequestAdoptions(requests);
+    //         this.requestAdoptionService.saveRequestAdoption(requestAdoption);
+    //         return "redirect:/adoptions";
+    //     }
+    // }
 
 }

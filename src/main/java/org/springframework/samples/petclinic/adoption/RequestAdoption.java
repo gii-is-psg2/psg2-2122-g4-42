@@ -28,6 +28,10 @@ public class RequestAdoption extends BaseEntity{
 	@JoinColumn(name = "owner_id")
 	private Owner owner;
 
+    @ManyToOne
+    @JoinColumn(name = "adoption_id", nullable = false)
+    private Adoption adoption;
+
     public String toString(){
         return this.description + this.status;
     }
