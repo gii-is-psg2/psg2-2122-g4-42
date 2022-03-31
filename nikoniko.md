@@ -15,7 +15,10 @@
 | March 22      |     :-:       |    :smiley:    |    :smiley:    |      :-:       |    :smiley:    |       :-:      |
 | March 23      |   :smiley:    |      :-:       |      :-:       |      :-:       |      :-:       |       :-:      |
 | March 24      |:neutral_face: |    :smiley:    |      :-:       | :neutral_face: |    :smiley:    | :neutral_face: |                
-| March 28      |     :-:       |      :-:       |      :-:       | :neutral_face: |      :-:       |       :-:      |    
+| March 25      |   :smiley:    |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |                
+| March 27      |   :smiley:    |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |                
+| March 28      |     :-:       |      :-:       |      :-:       | :neutral_face: |      :-:       |      :-:       |    
+| March 29      |:neutral_face: |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |                
 | Day           |               |                |                |                |                |                |    
 | Day 4         |               |                |                |                |                |                |    
 | Day 4         |               |                |                |                |                |                |    
