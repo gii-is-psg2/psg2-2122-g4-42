@@ -132,9 +132,8 @@ public class AdoptionController {
 
     @PostMapping(value = "/adoptions/new")
     public String createAdoptionForm(@Valid Adoption adoption,
-            BindingResult result, Map<String, Object> model) {
+            BindingResult result) {
         if (result.hasErrors()) {
-            model.put("adoption", adoption);
             return "adoptions/createRequestAdoptionForm";
         } else {
             this.adoptionService.saveAdoption(adoption);
@@ -152,12 +151,8 @@ public class AdoptionController {
                 .collect(Collectors.toList()).get(0);
         Owner newOwner = requestAdoption.getOwner();
         Pet pet = adoption.getPet();
-        // Owner oldOwner = this.ownerService.findAllOwners().stream().filter(owner -> owner.getPets().contains(pet))
-        //         .collect(Collectors.toList()).get(0);
         newOwner.addPet(pet);
         this.ownerService.saveOwner(newOwner);
-        // oldOwner.removePet(pet);
-        // this.ownerService.saveOwner(oldOwner);
         this.adoptionService.deleteAdoption(adoption.getId());
         return "redirect:/adoptions";
     }
@@ -180,7 +175,7 @@ public class AdoptionController {
 
     @PostMapping(value = "/adoptions/{adoptionId}/request")
     public String createRequestForm(@PathVariable("adoptionId") int adoptionId, @Valid RequestAdoption requestAdoption,
-            BindingResult result, Map<String, Object> model) {
+            BindingResult result) {
         Adoption adoption = this.adoptionService.findAdoptionById(adoptionId);
         Collection<RequestAdoption> requests = adoption.getRequestAdoptions();
 
@@ -205,7 +200,6 @@ public class AdoptionController {
                 this.requestAdoptionService.saveRequestAdoption(requestAdoption);
                 return "redirect:/adoptions";
             }
-            model.put("requestAdoption", requestAdoption);
             return "adoptions/createRequestAdoptionForm";
         } else {
             requests.add(requestAdoption);
