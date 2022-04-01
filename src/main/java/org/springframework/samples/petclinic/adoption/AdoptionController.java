@@ -131,7 +131,7 @@ public class AdoptionController {
     }
 
     @PostMapping(value = "/adoptions/new")
-    public String createRequestForm(@Valid Adoption adoption,
+    public String createAdoptionForm(@Valid Adoption adoption,
             BindingResult result, Map<String, Object> model) {
         if (result.hasErrors()) {
             model.put("adoption", adoption);
@@ -145,18 +145,15 @@ public class AdoptionController {
     @GetMapping(value = "/adoptions/acceptRequest/{requestAdoptionId}")
     public String acceptRequest(@PathVariable("requestAdoptionId") int requestAdoptionId) {
         RequestAdoption requestAdoption = this.requestAdoptionService.findRequestAdoptionById(requestAdoptionId);
-        System.out.println("AAAAAAAAAAAAAA"+requestAdoption.getDescription());
         requestAdoption.setStatus(Status.APPROVED);
         this.requestAdoptionService.saveRequestAdoption(requestAdoption);
         Adoption adoption = this.adoptionService.findAllAdoptions().stream()
                 .filter(a -> a.getRequestAdoptions().contains(requestAdoption))
                 .collect(Collectors.toList()).get(0);
-        System.out.println("AAAAAAAAAAAAAAAA"+adoption.getDescription());
         Owner newOwner = requestAdoption.getOwner();
         Pet pet = adoption.getPet();
-        Owner oldOwner = this.ownerService.findAllOwners().stream().filter(owner -> owner.getPets().contains(pet))
-                .collect(Collectors.toList()).get(0);
-        System.out.println("newowner"+newOwner.getFirstName()+"oldowner"+oldOwner.getFirstName()+"pet"+pet.getName());
+        // Owner oldOwner = this.ownerService.findAllOwners().stream().filter(owner -> owner.getPets().contains(pet))
+        //         .collect(Collectors.toList()).get(0);
         newOwner.addPet(pet);
         this.ownerService.saveOwner(newOwner);
         // oldOwner.removePet(pet);
