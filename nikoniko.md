@@ -1,9 +1,13 @@
 ### Meaning
 
-:smiley: (Meaning that I am learning, I like the work and I think I can do it without problems, but with some effort) 
-:-: (Meaning that I did no work regarding the PSG2 project)           |
-:neutral_face:  (Meaning that I feel I had to struggle, but the assigned work was fair and the day productive)          
-:worried: (Meaning that I feel I have serious difficulties to accomplish the task, or the productivity of my day was awful)           
+:smiley: (Meaning that I am learning, I like the work and I think I can do it without problems, but with some effort)
+
+:-: (Meaning that I did no work regarding the PSG2 project)           
+
+:neutral_face:  (Meaning that I feel I had to struggle, but the assigned work was fair and the day productive) 
+
+:worried: (Meaning that I feel I have serious difficulties to accomplish the task, or the productivity of my day was awful)   
+
 :fearful:   (I´m desperate, I need help)        
 
 
@@ -18,7 +22,6 @@
 | March 25      |   :smiley:    |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |                
 | March 27      |   :smiley:    |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |                
 | March 28      |     :-:       |      :-:       |      :-:       | :neutral_face: |      :-:       |      :-:       |    
-| March 29      |:neutral_face: |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |                
-| Day           |               |                |                |                |                |                |    
-| Day 4         |               |                |                |                |                |                |    
-| Day 4         |               |                |                |                |                |                |    
+| March 29      |:neutral_face: |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       | 
+| March 30      |   :worried:   |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |
+| April 01      |:neutral_face: |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |  
