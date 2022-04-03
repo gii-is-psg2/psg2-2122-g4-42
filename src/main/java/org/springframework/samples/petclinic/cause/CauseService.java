@@ -61,7 +61,9 @@ public class CauseService {
         donationRepository.deleteById(id);
     }
 
+    @Transactional
     public Collection<Donation> findDonationsByCauseId(int causeId) {
         return donationRepository.findByCauseId(causeId);
     }
+
 }

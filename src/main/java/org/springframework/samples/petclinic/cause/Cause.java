@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.samples.petclinic.model.NamedEntity;
@@ -33,9 +32,6 @@ public class Cause extends NamedEntity{
     private String description;
 
     private double budgetTarget;
-
-    @Value("0.0")
-    private double moneyRaised;
 
     @NotEmpty
     @NotNull

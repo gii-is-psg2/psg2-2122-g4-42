@@ -75,10 +75,12 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'castracion');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'esterilizacion');
 
-INSERT INTO causes(id,name,description,money_raised,budget_target,organization) VALUES (1, 'Parvovirosis', 'Esta ayuda va destinada a curar a perros con la enfermedad de parvovirosis', 0, 2000, 'Arca de Noe');
-INSERT INTO causes(id,name,description,money_raised,budget_target,organization) VALUES (2, 'Refugio de perros y gatos', 'Esta ayuda va destinada a la asociacion El Trasgu, la cual trabaja para evitar que mas perros y gatos sean abandonados en Espana.', 0, 3000, 'El Trasgu');
-INSERT INTO causes(id,name,description,money_raised,budget_target,organization) VALUES (3, 'Fondos para APAP', 'ASAP se trata de un centro de acogida y adopcion donde trabajan voluntarios que procuran comida, refugio, limpieza, atencion sanitaria y ejercicio a los perros rescatados.', 0, 1500, 'Asociacion Protectora de Animales y Plantas (APAP Alcala)');
+INSERT INTO causes(id,name,description,budget_target,organization) VALUES (1, 'Parvovirosis', 'Esta ayuda va destinada a curar a perros con la enfermedad de parvovirosis', 2000, 'Arca de Noe');
+INSERT INTO causes(id,name,description,budget_target,organization) VALUES (2, 'Refugio de perros y gatos', 'Esta ayuda va destinada a la asociacion El Trasgu, la cual trabaja para evitar que mas perros y gatos sean abandonados en Espana.', 3000, 'El Trasgu');
+INSERT INTO causes(id,name,description,budget_target,organization) VALUES (3, 'Fondos para APAP', 'ASAP se trata de un centro de acogida y adopcion donde trabajan voluntarios que procuran comida, refugio, limpieza, atencion sanitaria y ejercicio a los perros rescatados.', 1500, 'Asociacion Protectora de Animales y Plantas (APAP Alcala)');
 
 INSERT INTO donations(id, donation_date, amount, client, cause_id) VALUES (1, '2014-05-03', 30.0, 'Antonio Cortes', 1);
-INSERT INTO donations(id, donation_date, amount, client, cause_id) VALUES (2, '2013-01-05', 40.0, 'Manuel Escobas', 3);
-INSERT INTO donations(id, donation_date, amount, client, cause_id) VALUES (3, '2013-01-07', 15.0, 'Antonio Banderas', 2);
+INSERT INTO donations(id, donation_date, amount, client, cause_id) VALUES (2, '2013-01-05', 40.0, 'Manuel Escobas', 2);
+INSERT INTO donations(id, donation_date, amount, client, cause_id) VALUES (3, '2013-01-07', 15.0, 'Antonio Banderas', 3);
+INSERT INTO donations(id, donation_date, amount, client, cause_id) VALUES (4, '2013-01-17', 5.0, 'Antonio Figueras', 3);
+INSERT INTO donations(id, donation_date, amount, client, cause_id) VALUES (5, '2013-01-27', 10.0, 'Manuel Banderas', 3);
