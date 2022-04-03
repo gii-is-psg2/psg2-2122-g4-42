@@ -1,4 +1,5 @@
 package org.springframework.samples.petclinic.adoption;
+
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
@@ -7,21 +8,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
 
-public interface AdoptionRepository extends Repository<Adoption,Integer>{
-    void save(Adoption adoption) throws DataAccessException;
+public interface RequestAdoptionRepository extends Repository<RequestAdoption,Integer>{
+    void save(RequestAdoption requestAdoption) throws DataAccessException;
     
-    Adoption findById(int id) throws DataAccessException;
+    RequestAdoption findById(int id) throws DataAccessException;
 
-    List<Adoption> findAll();
-
-    Adoption findByPetId(Integer petId);
+    List<RequestAdoption> findAll();
 
     @Modifying
-    @Query("DELETE Adoption a WHERE a.id = :id")
+    @Query("DELETE RequestAdoption ra WHERE ra.id = :id")
     void deleteById(@Param("id") int id);
 
-    @Modifying
-    @Query("DELETE FROM Adoption a")
     void deleteAll();
     
 }
