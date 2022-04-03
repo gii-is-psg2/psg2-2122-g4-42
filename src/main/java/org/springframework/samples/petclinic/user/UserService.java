@@ -59,4 +59,9 @@ public class UserService {
 	public void findAll() throws DataAccessException{
 		userRepository.findAll();
 	}
+
+	@Transactional(readOnly = true)
+	public User findByUsername(String username) throws DataAccessException{
+		return userRepository.findByUsername(username);
+	}
 }

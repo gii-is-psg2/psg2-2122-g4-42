@@ -29,11 +29,13 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.samples.petclinic.adoption.Adoption;
 import org.springframework.samples.petclinic.hotel.Hotel;
 import org.springframework.samples.petclinic.model.NamedEntity;
 import org.springframework.samples.petclinic.owner.Owner;
@@ -66,6 +68,9 @@ public class Pet extends NamedEntity {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
 	private Set<Hotel> hotels;
+
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
+	private Adoption adoption;
 
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;

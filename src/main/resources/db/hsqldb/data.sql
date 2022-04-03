@@ -4,6 +4,24 @@ INSERT INTO authorities(id,username,authority) VALUES (1,'admin1','admin');
 -- One owner user, named owner1 with passwor 0wn3r
 INSERT INTO users(username,password,enabled) VALUES ('dueno1','du3n0',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (2,'dueno1','owner');
+INSERT INTO users(username,password,enabled) VALUES ('dueno2','du3n0',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (4,'dueno2','owner');
+INSERT INTO users(username,password,enabled) VALUES ('dueno3','du3n0',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (5,'dueno3','owner');
+INSERT INTO users(username,password,enabled) VALUES ('dueno4','du3n0',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (6,'dueno4','owner');
+INSERT INTO users(username,password,enabled) VALUES ('dueno5','du3n0',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (7,'dueno5','owner');
+INSERT INTO users(username,password,enabled) VALUES ('dueno6','du3n0',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (8,'dueno6','owner');
+INSERT INTO users(username,password,enabled) VALUES ('dueno7','du3n0',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (9,'dueno7','owner');
+INSERT INTO users(username,password,enabled) VALUES ('dueno8','du3n0',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (10,'dueno8','owner');
+INSERT INTO users(username,password,enabled) VALUES ('dueno9','du3n0',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (11,'dueno9','owner');
+INSERT INTO users(username,password,enabled) VALUES ('dueno10','du3n0',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (12,'dueno10','owner');
 -- One vet user, named vet1 with passwor v3t
 INSERT INTO users(username,password,enabled) VALUES ('veterinario1','v3t3rinario',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (3,'veterinario1','veterinarian');
@@ -40,15 +58,15 @@ INSERT INTO rooms VALUES (5, 'Habitacion_5');
 INSERT INTO rooms VALUES (6, 'Habitacion_6');
 
 INSERT INTO owners VALUES (1, 'Jorge', 'Francisco', 'Calle Castillo.', 'Caceres', '6085551023', 'dueno1');
-INSERT INTO owners VALUES (2, 'Beatriz', 'David', 'Avenida Cardenal', 'Badajoz', '6085551749', 'dueno1');
-INSERT INTO owners VALUES (3, 'Eduardo', 'Rodriguez', 'Calle Espinosa', 'Murcia', '6085558763', 'dueno1');
-INSERT INTO owners VALUES (4, 'Carola', 'Fernandez', 'Avenida Flores', 'Bilbao', '6085553198', 'dueno1');
-INSERT INTO owners VALUES (5, 'Pedro', 'Tavarez', 'Calle Hada', 'Madrid', '6085552765', 'dueno1');
-INSERT INTO owners VALUES (6, 'Juan', 'Calero', 'Calle Lagos', 'Sevilla', '6085552654', 'dueno1');
-INSERT INTO owners VALUES (7, 'Jeff', 'Black', 'Paseo Oscuro', 'Sevilla', '6085555387', 'dueno1');
-INSERT INTO owners VALUES (8, 'Maria', 'Escobito', 'Calle Escobas', 'Madrid', '6085557683', 'dueno1');
-INSERT INTO owners VALUES (9, 'David', 'Estevez', 'Avenida Cisne', 'Madrid', '6085559435', 'dueno1');
-INSERT INTO owners VALUES (10, 'Carlos', 'Esteban', 'Avenida Independencia', 'Cadiz', '6085555487', 'dueno1');
+INSERT INTO owners VALUES (2, 'Beatriz', 'David', 'Avenida Cardenal', 'Badajoz', '6085551749', 'dueno2');
+INSERT INTO owners VALUES (3, 'Eduardo', 'Rodriguez', 'Calle Espinosa', 'Murcia', '6085558763', 'dueno3');
+INSERT INTO owners VALUES (4, 'Carola', 'Fernandez', 'Avenida Flores', 'Bilbao', '6085553198', 'dueno4');
+INSERT INTO owners VALUES (5, 'Pedro', 'Tavarez', 'Calle Hada', 'Madrid', '6085552765', 'dueno5');
+INSERT INTO owners VALUES (6, 'Juan', 'Calero', 'Calle Lagos', 'Sevilla', '6085552654', 'dueno6');
+INSERT INTO owners VALUES (7, 'Jeff', 'Black', 'Paseo Oscuro', 'Sevilla', '6085555387', 'dueno7');
+INSERT INTO owners VALUES (8, 'Maria', 'Escobito', 'Calle Escobas', 'Madrid', '6085557683', 'dueno8');
+INSERT INTO owners VALUES (9, 'David', 'Estevez', 'Avenida Cisne', 'Madrid', '6085559435', 'dueno9');
+INSERT INTO owners VALUES (10, 'Carlos', 'Esteban', 'Avenida Independencia', 'Cadiz', '6085555487', 'dueno10');
 
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (1, 'Leonardo', '2010-09-07', 1, 1);
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (2, 'Basilea', '2012-08-06', 6, 2);
@@ -74,4 +92,13 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (1, 7, '2013-01-01',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02', 'vacuna de la rabia');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'castracion');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'esterilizacion');
+
+INSERT INTO adoptions(id,description,pet_id) VALUES (1, 'No estamos en casa tanto y pasa solo mucho tiempo',1);
+INSERT INTO adoptions(id,description,pet_id) VALUES (2, 'No tenemos ingresos y no podemos manternerlo',2);
+INSERT INTO adoptions(id,description,pet_id) VALUES (3, 'Lo encontramos en la calle y no podemos quedarnoslo',3);
+INSERT INTO adoptions(id,description,pet_id) VALUES (4, 'Era de mi hija que ya no esta y no podemos cuidarlo',4);
+
+INSERT INTO request_adoptions(id,description,status,owner_id,adoption_id) VALUES (1, 'Me siento muy solo y necesito compania, prometo cuidarlo y darle mucho amor', 2, 5, 1);
+INSERT INTO request_adoptions(id,description,status,owner_id,adoption_id) VALUES (2, 'Estoy buscando un perro para mi hijo pequeno', 2, 7, 1);
+INSERT INTO request_adoptions(id,description,status,owner_id,adoption_id) VALUES (3, 'Quiero regalarle a mi madre una mascota para que este mas entretenida', 2, 9, 3);
 
