@@ -71,9 +71,16 @@ public class CauseServiceTests {
     @Modifying
     void shouldDeleteCause(){
         List<Cause> causes = this.causeService.findAllCauses();
+        Collection<Donation> donations = this.causeService.findDonations();
         int found = causes.size();
 
-        this.causeService.deleteCause(3);
+        for(Donation donation: donations){
+
+            if(donation.getCause().getId() == 1){
+                this.causeService.deleteDonation(donation.getId());
+            }
+        }
+        this.causeService.deleteCause(1);
         causes = this.causeService.findAllCauses();
         assertEquals(causes.size(), found-1);
     }
@@ -111,7 +118,7 @@ public class CauseServiceTests {
     @Test
     void shouldFindAllDonations(){
         Collection<Donation> donations = this.causeService.findDonations();
-        assertEquals(donations.size(), 3);
+        assertEquals(donations.size(), 5);
     }
 
     @Test
@@ -131,4 +138,6 @@ public class CauseServiceTests {
         Collection<Donation> donations = this.causeService.findDonationsByCauseId(3);
         assertThat(donations.size()).isEqualTo(3);
     }
+
+
 }
