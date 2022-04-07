@@ -18,15 +18,15 @@
 | March 18      |   :smiley:    |      :-:       |      :-:       |      :-:       |      :-:       |       :-:      |
 | March 22      |     :-:       |    :smiley:    |    :smiley:    |      :-:       |    :smiley:    |       :-:      |
 | March 23      |   :smiley:    |      :-:       |      :-:       |      :-:       |      :-:       |       :-:      |
-| March 24      |:neutral_face: |    :smiley:    |      :-:       | :neutral_face: |    :smiley:    | :neutral_face: |                
+| March 24      |:neutral_face: |    :smiley:    |   :smiley:     | :neutral_face: |    :smiley:    | :neutral_face: |                
 | March 25      |   :smiley:    |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |                
 | March 27      |   :smiley:    |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |                
 | March 28      |     :-:       |      :-:       |      :-:       | :neutral_face: |      :-:       |      :-:       |    
 | March 29      |:neutral_face: |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       | 
 | March 30      |   :worried:   |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |
-| March 31      |     :-:       |      :-:       |    :smiley:    |      :-:       |      :-:       |      :-:       |
+| March 31      |     :-:       |      :-:       |    :smiley:    |    :smiley:    |      :-:       |      :-:       |
 | April 01      |:neutral_face: |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       | 
 | April 03      |     :-:       |      :-:       |    :smiley:    |      :-:       |      :-:       |      :-:       |
-| April 04      |     :-:       |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |
+| April 04      |     :-:       |      :-:       |      :-:       |   :smiley:     |      :-:       |      :-:       |
 | April 06      |     :-:       |      :-:       |    :smiley:    |      :-:       |      :-:       |      :-:       |
 
