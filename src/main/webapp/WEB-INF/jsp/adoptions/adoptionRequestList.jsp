@@ -12,7 +12,12 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
     <c:forEach items="${requestAdoptions}" var="request">
       <div class="card card-1">
         <div class="card__icon">
-          <c:out value="${request.status}" />
+          <spring:url value="/owners/{ownerId}" var="ownerUrl">
+            <spring:param name="ownerId" value="${request.owner.id}" />
+          </spring:url>
+          <a style="color:white" href="${fn:escapeXml(ownerUrl)}"
+            ><c:out value="${request.status} - ${request.owner.firstName}"
+          /></a>
         </div>
         <p class="card__exit"><i class="fas fa-times"></i></p>
         <h2 class="card__title">

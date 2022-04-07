@@ -83,6 +83,17 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
                             <h2 class="card__title">
                             <c:out value="${requestAdoption.description}" />
                             </h2>
+                            <p class="card__apply">
+                                <span>
+                                    <spring:url
+                                        value="/owners/{ownerId}"
+                                        var="ownerUrl"
+                                    >
+                                    <spring:param name="ownerId" value="${requestAdoption.owner.id}" />
+                                    </spring:url><a class="card__link" href="${fn:escapeXml(ownerUrl)}"
+                                    ><c:out value="${requestAdoption.owner.firstName}" /></a
+                                ></span>
+                            </p>
                         </div>
                         </c:forEach>
                     </div>
