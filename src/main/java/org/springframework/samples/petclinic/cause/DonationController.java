@@ -45,7 +45,7 @@ public class DonationController {
     @PostMapping("/new")
     public String processCreationForm(HttpSession session, @PathVariable(name = "causeId") int causeId, @Valid Donation donation, BindingResult result, String client) {
         if (result.hasErrors()) {
-            return VIEWS_CREATE_DONATIONS_FORM;
+            return "/exception";
         } else {
             Cause cause = causeService.findCauseById(causeId);
             donation.setCause(cause);
