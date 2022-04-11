@@ -36,10 +36,10 @@
 
 					<td><c:out value="${cause.budgetTarget} " /></td>
 
-					<td><spring:url value="/donation/new" var="causeUpdateUrl">
-							<spring:param name="causeId" value="${cause.id}" />
-						</spring:url> <a href="${fn:escapeXml(causeUpdateUrl)}">Hacer una donación</a>
-					</td>
+					<td><spring:url value="/causes/{causeId}/donations/new" var="causeUpdateUrl">
+                            <spring:param name="causeId" value="${cause.id}" />
+                        </spring:url> <a href="${fn:escapeXml(causeUpdateUrl)}">Hacer una donación</a>
+                    </td>
 
 					<td><spring:url value="/causes/detail" var="causeDetailUrl">
 							<spring:param name="causeId" value="${cause.id}" />

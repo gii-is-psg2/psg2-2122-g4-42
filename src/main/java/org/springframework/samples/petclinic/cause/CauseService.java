@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CauseService {
     
     private CauseRepository causeRepository;
-    private DonationRepository donationRepository;
+    private  DonationRepository donationRepository;
 
     @Autowired
     public CauseService(CauseRepository causeRepository,
