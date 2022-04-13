@@ -48,8 +48,15 @@ public class CauseService {
 
     @Transactional
     public void saveDonation(Donation  donation) throws DataAccessException {
+    	Cause cause = donation.getCause();
+        if (cause.isClosed())
+            throw new IllegalArgumentException();
+        double leftToFulfill = cause.getBudgetTarget() - cause.getMoneyDonated();
+        donation.setAmount(Math.min(donation.getAmount(), leftToFulfill));
+        causeRepository.save(cause);
         donationRepository.save(donation);
     }
+   
 
     @Transactional(readOnly = true)
     public Collection<Donation> findDonations() throws DataAccessException {
