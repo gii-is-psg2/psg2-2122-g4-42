@@ -16,9 +16,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/causes/{causeId}/donations")
@@ -43,16 +45,17 @@ public class DonationController {
 
 
     @PostMapping("/new")
-    public String processCreationForm(HttpSession session, @PathVariable(name = "causeId") int causeId, @Valid Donation donation, BindingResult result, String client) {
+    public String processCreationForm(RedirectAttributes redirect, HttpSession session, @PathVariable(name = "causeId") int causeId, @Valid Donation donation, BindingResult result, String client) {
         if (result.hasErrors()) {
-            return "/exception";
+        	 redirect.addFlashAttribute("message", "Cantidad a donar erronea");
+            return "redirect:/causes/"+causeId+"/donations/new";
         } else {
-            Cause cause = causeService.findCauseById(causeId);
-            donation.setCause(cause);
+        	Cause cause = causeService.findCauseById(causeId);
+        	donation.setCause(cause);
             donation.setDate(LocalDate.now());
             donation.setClient(client);
             try {
-                causeService.saveDonation(donation);
+            	causeService.saveDonation(donation);
                 session.setAttribute("message", String.format("Se ha realizado una donación de %.02f EUR satisfactoriamente, muchas gracias.", donation.getAmount()));
             }catch(IllegalArgumentException e) {
                 session.setAttribute("message", "No se pudo realizar la donación porque la causa esta cerrada.");
