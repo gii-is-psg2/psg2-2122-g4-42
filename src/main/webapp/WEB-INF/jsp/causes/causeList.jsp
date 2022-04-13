@@ -49,6 +49,16 @@
 		</tbody>
 
 	</table>
+	<table class="table-buttons">
+        <tr>
+            <td>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <a class="btn btn-default" href='<spring:url value="/causes/new" htmlEscape="true"/>'>Añadir Causa</a>
+                </div>
+            </td>            
+        </tr>
+        
+    </table>
 
 
 </petclinic:layout>
