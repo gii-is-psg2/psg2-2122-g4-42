@@ -3,6 +3,8 @@ package org.springframework.samples.petclinic.cause;
 import java.util.Collection;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ public class CauseService {
     
     private CauseRepository causeRepository;
     private  DonationRepository donationRepository;
+    private Cause cause;
 
     @Autowired
     public CauseService(CauseRepository causeRepository,
@@ -66,5 +69,12 @@ public class CauseService {
     public Collection<Donation> findDonationsByCauseId(int causeId) {
         return donationRepository.findByCauseId(causeId);
     }
-
+public Double getMoneyDonated(Donation donation, Double amon) {
+	Double contador = 0.0;
+	contador = contador + amon;
+	if(contador <= cause.getBudgetTarget()) {
+		contador =+ contador + amon;
+}
+	return contador;
+}
 }

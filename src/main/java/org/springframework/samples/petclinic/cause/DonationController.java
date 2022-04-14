@@ -55,8 +55,10 @@ public class DonationController {
             donation.setDate(LocalDate.now());
             donation.setClient(client);
             try {
-            	causeService.saveDonation(donation);
-                session.setAttribute("message", String.format("Se ha realizado una donación de %.02f EUR satisfactoriamente, muchas gracias.", donation.getAmount()));
+            	causeService.getMoneyDonated(donation, donation.getAmount());
+            		causeService.saveDonation(donation);
+            		session.setAttribute("message", String.format("Se ha realizado una donación de %.02f EUR satisfactoriamente, muchas gracias.", donation.getAmount()));
+            	
             }catch(IllegalArgumentException e) {
                 session.setAttribute("message", "No se pudo realizar la donación porque la causa esta cerrada.");
             }
