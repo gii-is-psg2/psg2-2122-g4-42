@@ -20,14 +20,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class HotelController {
 
 	private final HotelService hotelService;
-	private final HotelRepository hotelrepo;
 	private final PetService petService;
 
 	@Autowired
-	public HotelController(HotelService hotelService, PetService petService, HotelRepository hotelrepo) {
+	public HotelController(HotelService hotelService, PetService petService) {
 		this.hotelService = hotelService;
 		this.petService = petService;
-		this.hotelrepo = hotelrepo;
 
 	}
 
@@ -66,7 +64,7 @@ public class HotelController {
 
 			return "pets/createOrUpdateHotelForm";
 		} else {
-			for (Hotel ho : hotelrepo.findByPetId(petId)) {
+			for (Hotel ho : hotelService.findHotelsByPetId(petId)) {
 				if (ho.getDate1().equals(hotel.getDate1())) {
 					result.rejectValue("room",
 							"Ya tienes una reserva existente para ese dia",
