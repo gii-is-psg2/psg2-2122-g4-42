@@ -26,20 +26,31 @@
     </table>
 
     <table class="table table-striped" >
-        <tr>
+        
+            <h2 >Donaciones</h2>
+            <tr>
+                <th>Número de donación</th>
+                <th>Cantidad</th>
+                <th>Número de donación</th>
+                <th>nombre</th>
+            </tr>
             <c:forEach var="donation" items="${cause.donations}">
-                <td valign="top" >
-                    <dl class="dl-horizontal">
-                        <dt>Cantidad</dt>
-                        <dd><c:out value="${donation.amount}"/></dd>
-                        <dt>Fecha de donación</dt>
-                        <dd><petclinic:localDate date="${donation.date}" pattern="yyyy-MM-dd"/></dd>
-                        <dt>Nombre del donante</dt>
-                        <dd><c:out value="${donation.client}"/></dd>
-                    </dl>
-                </td>
+                <tr>
+                    <td>
+                        <c:out value="${donation.id}"/>
+                    </td>
+                    <td>
+                        <c:out value="${donation.client}"/>
+                    </td>
+                    <td>
+                        <c:out value="${donation.date}"/>
+                    </td>
+                    <td>
+                        <c:out value="${donation.amount}"/>
+                    </td>
+                </tr>
             </c:forEach>
-        </tr>
+        
     </table>
 
     <spring:url value="/donation/new" var="addUrl">
