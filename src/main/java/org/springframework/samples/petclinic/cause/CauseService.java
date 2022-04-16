@@ -3,6 +3,8 @@ package org.springframework.samples.petclinic.cause;
 import java.util.Collection;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class CauseService {
     
     private CauseRepository causeRepository;
-    private DonationRepository donationRepository;
+    private  DonationRepository donationRepository;
+    private Cause cause;
 
     @Autowired
     public CauseService(CauseRepository causeRepository,
@@ -47,9 +50,18 @@ public class CauseService {
     }
 
     @Transactional
-    public void saveDonation(Donation  donation) throws DataAccessException {
+    public void saveDonation(Donation  donation)  {
+    	Cause cause = donation.getCause();
+    	 if (cause.getMoneyRaised() > cause.getBudgetTarget())
+    	throw new IllegalArgumentException();
+        double leftToFulfill = cause.getBudgetTarget() - cause.getMoneyRaised();
+        donation.setAmount(Math.min(donation.getAmount(), leftToFulfill));
+            cause.setMoneyRaised(cause.getMoneyRaised() + donation.getAmount());
+    
+    	causeRepository.save(cause);
         donationRepository.save(donation);
     }
+   
 
     @Transactional(readOnly = true)
     public Collection<Donation> findDonations() throws DataAccessException {

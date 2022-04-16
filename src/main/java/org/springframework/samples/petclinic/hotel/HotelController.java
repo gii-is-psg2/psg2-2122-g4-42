@@ -66,7 +66,6 @@ public class HotelController {
 			return "pets/createOrUpdateHotelForm";		
 		} else if(hotel.getDate1().isAfter(hotel.getDate2())) {
 			result.rejectValue("date2", "Fecha de salida anterior a la fecha de entrada", "Fecha de salida anterior a la fecha de entrada.");
-	 
 			return "pets/createOrUpdateHotelForm";
 		}
 		else  {

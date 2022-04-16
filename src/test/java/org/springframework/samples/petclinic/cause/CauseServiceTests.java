@@ -45,6 +45,7 @@ public class CauseServiceTests {
         cause.setName("Cause1");
         cause.setDescription("Cause1's description");
         cause.setBudgetTarget(2000);
+        cause.setMoneyRaised(100);
         cause.setOrganization("Cause1's organization");
 
         this.causeService.saveCause(cause);
