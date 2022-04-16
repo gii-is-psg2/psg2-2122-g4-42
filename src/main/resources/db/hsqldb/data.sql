@@ -93,6 +93,16 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'castracion');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'esterilizacion');
 
+INSERT INTO causes(id,name,description,money_raised,budget_target,organization) VALUES (1, 'Parvovirosis', 'Esta ayuda va destinada a curar a perros con la enfermedad de parvovirosis',100, 2000, 'Arca de Noe');
+INSERT INTO causes(id,name,description,money_raised,budget_target,organization) VALUES (2, 'Refugio de perros y gatos', 'Esta ayuda va destinada a la asociacion El Trasgu, la cual trabaja para evitar que mas perros y gatos sean abandonados en Espana.',200,  3000, 'El Trasgu');
+INSERT INTO causes(id,name,description,money_raised,budget_target,organization) VALUES (3, 'Fondos para APAP', 'ASAP se trata de un centro de acogida y adopcion donde trabajan voluntarios que procuran comida, refugio, limpieza, atencion sanitaria y ejercicio a los perros rescatados.',500, 1500, 'Asociacion Protectora de Animales y Plantas (APAP Alcala)');
+
+INSERT INTO donations(id, donation_date, amount, client, cause_id) VALUES (1, '2014-05-03', 30.0, 'Antonio Cortes', 1);
+INSERT INTO donations(id, donation_date, amount, client, cause_id) VALUES (2, '2013-01-05', 40.0, 'Manuel Escobas', 2);
+INSERT INTO donations(id, donation_date, amount, client, cause_id) VALUES (3, '2013-01-07', 15.0, 'Antonio Banderas', 3);
+INSERT INTO donations(id, donation_date, amount, client, cause_id) VALUES (4, '2013-01-17', 5.0, 'Antonio Figueras', 3);
+INSERT INTO donations(id, donation_date, amount, client, cause_id) VALUES (5, '2013-01-27', 10.0, 'Manuel Banderas', 3);
+
 INSERT INTO adoptions(id,description,pet_id) VALUES (1, 'No estamos en casa tanto y pasa solo mucho tiempo',1);
 INSERT INTO adoptions(id,description,pet_id) VALUES (2, 'No tenemos ingresos y no podemos manternerlo',2);
 INSERT INTO adoptions(id,description,pet_id) VALUES (3, 'Lo encontramos en la calle y no podemos quedarnoslo',3);
@@ -101,4 +111,5 @@ INSERT INTO adoptions(id,description,pet_id) VALUES (4, 'Era de mi hija que ya n
 INSERT INTO request_adoptions(id,description,status,owner_id,adoption_id) VALUES (1, 'Me siento muy solo y necesito compania, prometo cuidarlo y darle mucho amor', 2, 5, 1);
 INSERT INTO request_adoptions(id,description,status,owner_id,adoption_id) VALUES (2, 'Estoy buscando un perro para mi hijo pequeno', 2, 7, 1);
 INSERT INTO request_adoptions(id,description,status,owner_id,adoption_id) VALUES (3, 'Quiero regalarle a mi madre una mascota para que este mas entretenida', 2, 9, 3);
+
 
