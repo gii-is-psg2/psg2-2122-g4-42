@@ -53,7 +53,7 @@
         
     </table>
 
-    <spring:url value="/donation/new" var="addUrl">
+    <spring:url value="/causes/{causeId}/donations/new" var="addUrl">
         <spring:param name="causeId" value="${cause.id}"/>
     </spring:url>
     <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Añadir donación</a>
