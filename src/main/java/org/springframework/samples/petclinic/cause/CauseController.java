@@ -5,10 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 
@@ -39,11 +41,11 @@ public class CauseController {
 	}
 
 	@PostMapping(value = "/causes/new")
-	public String processCreationForm(@Valid Cause cause, BindingResult result) {
+	public String processCreationForm(RedirectAttributes redirect, HttpSession session,@Valid Cause cause, BindingResult result) {
 		if (result.hasErrors()) {
 			return VIEWS_CAUSE_CREATE_FORM;
 		}else if(cause.getBudgetTarget() <= 0){
-			result.rejectValue("bugdetTarget", "El presupuesto objetivo no puede ser negativo","El presupuesto objetivo no puede ser negativo");
+			result.rejectValue("budgetTarget", "negativeNumber", "el presupuesto objetivo no puede ser negativo o nulo");
 			return VIEWS_CAUSE_CREATE_FORM;
 		}else {
 			this.causeService.saveCause(cause);
