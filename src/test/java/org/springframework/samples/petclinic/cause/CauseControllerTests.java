@@ -7,6 +7,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -49,6 +54,23 @@ public class CauseControllerTests {
 		.param("organization", "SEVUS")
 		.with(csrf())).andExpect(status().is3xxRedirection())
 		.andExpect(view().name("redirect:/causes"));
+	@BeforeEach
+	void setup() {
+		given(this.causeService.findCauseById(TEST_CAUSE_ID)).willReturn(new Cause());
+	}
+
+	@WithMockUser(value = "spring")
+	@Test
+	void testInitDetailCausePage() throws Exception {
+		mockMvc.perform(get("/causes/detail/{causeId}", TEST_CAUSE_ID)).andExpect(status().isOk())
+				.andExpect(view().name("/causes/causeDetails"));
+	}
+
+	@WithMockUser(value = "spring")
+	@Test
+	void testShowCause() throws Exception {
+		mockMvc.perform(get("/causes/detail/{causeId}", TEST_CAUSE_ID)).andExpect(status().isOk())
+				.andExpect(model().attributeExists("cause"));
 	}
 
 

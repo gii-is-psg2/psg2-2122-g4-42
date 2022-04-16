@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.LocalDate;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -51,7 +53,6 @@ public class CauseController {
 		model.put("causes", c);
 		return "causes/causeList";
 	}
-
 	@GetMapping(value = "/causes/new")
 	public String initCreationForm(Map<String, Object> model) {
 		Cause cause = new Cause();
@@ -72,6 +73,14 @@ public class CauseController {
 	}
 
 	
+	@GetMapping("/causes/detail/{causeId}")
+	public ModelAndView showCauseDetails(@PathVariable("causeId") int causeId) {
+		ModelAndView mav = new ModelAndView("/causes/causeDetails");
+		mav.addObject(this.causeService.findCauseById(causeId));
+		mav.addObject(this.causeService.findDonationsByCauseId(causeId));
+		return mav;
+	}
+
 }
 
 
