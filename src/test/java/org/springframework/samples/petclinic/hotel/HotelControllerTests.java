@@ -26,9 +26,6 @@ public class HotelControllerTests {
 
 	private static final int TEST_PET_ID = 1;
 
-	@Autowired
-	private HotelController hotelController;
-
 	@MockBean
 	private PetService petService;
 
@@ -53,8 +50,7 @@ public class HotelControllerTests {
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessNewHotelFormSuccess() throws Exception {
-		mockMvc.perform(post("/owners/*/pets/{petId}/hotel/new", TEST_PET_ID).param("name", "5EStrellas").with(csrf())).andExpect(status().is2xxSuccessful())
-				.andExpect(view().name("pets/createOrUpdateHotelForm"));
+		mockMvc.perform(post("/owners/*/pets/{petId}/hotel/new", TEST_PET_ID).param("room", "5EStrellas").param("date2","2025-04-16").with(csrf())).andExpect(status().is2xxSuccessful());
 	}
 	
 	@WithMockUser(value = "spring")

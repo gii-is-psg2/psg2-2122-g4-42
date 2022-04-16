@@ -16,10 +16,12 @@
 package org.springframework.samples.petclinic.owner;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
+import org.springframework.samples.petclinic.user.User;
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,6 +56,17 @@ public class OwnerService {
 	@Transactional(readOnly = true)
 	public Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException {
 		return ownerRepository.findByLastName(lastName);
+	}
+
+	@Transactional(readOnly = true)
+	public Owner findByUsername(String username) throws DataAccessException{
+		User user = userService.findByUsername(username);
+		return ownerRepository.findByUser(user);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Owner> findAllOwners(){
+		return ownerRepository.findAll();
 	}
 
 	@Transactional
