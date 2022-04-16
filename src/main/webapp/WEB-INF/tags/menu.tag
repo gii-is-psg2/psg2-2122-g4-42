@@ -46,6 +46,12 @@
 					<span>Causas</span>
 				</petclinic:menuItem>
 
+				<petclinic:menuItem active="${name eq 'adoptions'}" url="/adoptions"
+					title="adoptions">
+					<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+					<span>Adopciones</span>
+				</petclinic:menuItem>
+
 				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
 					title="trigger a RuntimeException to see how it is handled">
 					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
