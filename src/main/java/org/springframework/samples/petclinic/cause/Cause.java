@@ -32,6 +32,8 @@ public class Cause extends NamedEntity{
     private String description;
 
     private double budgetTarget;
+    private double moneyRaised;
+    
 
     @NotEmpty
     @NotNull
@@ -47,6 +49,7 @@ public class Cause extends NamedEntity{
         return this.donations;
     }
 
+   
     public List<Donation> getDonations(){
         List<Donation> sortedDonations = new ArrayList<>(getDonationsInternal());
         PropertyComparator.sort(sortedDonations, new MutableSortDefinition("date", false, false));
@@ -57,5 +60,7 @@ public class Cause extends NamedEntity{
         getDonationsInternal().add(donation);
         donation.setCause(this);
     }
+
+	
     
 }

@@ -7,11 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.model.BaseEntity;
+import org.springframework.samples.petclinic.user.User;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,9 +29,11 @@ public class Donation extends BaseEntity {
     private LocalDate date;
 
     @NotNull
+    @Min(0)
     @Column(name = "amount")
     private double amount;
 
+    @NotNull
     @NotEmpty
     @Column(name = "client")
     private String client;
