@@ -50,7 +50,11 @@ public class CauseService {
     }
 
     @Transactional
-    public void saveDonation(Donation  donation) throws DataAccessException {
+    public void saveDonation(Donation  donation)  {
+    	Cause cause = donation.getCause();
+            cause.setMoneyRaised(cause.getMoneyRaised() + donation.getAmount());
+    
+    	causeRepository.save(cause);
         donationRepository.save(donation);
     }
    
@@ -69,12 +73,5 @@ public class CauseService {
     public Collection<Donation> findDonationsByCauseId(int causeId) {
         return donationRepository.findByCauseId(causeId);
     }
-public Double getMoneyDonated(Donation donation, Double amon) {
-	Double contador = 0.0;
-	contador = contador + amon;
-	if(contador <= cause.getBudgetTarget()) {
-		contador =+ contador + amon;
-}
-	return contador;
-}
+
 }

@@ -46,24 +46,24 @@ public class DonationController {
 
     @PostMapping("/new")
     public String processCreationForm(RedirectAttributes redirect, HttpSession session, @PathVariable(name = "causeId") int causeId, @Valid Donation donation, BindingResult result, String client) {
-        if (result.hasErrors()) {
+    	 Cause cause = causeService.findCauseById(causeId);
+     	donation.setCause(cause);
+         donation.setDate(LocalDate.now());
+         donation.setClient(client);
+         causeService.saveDonation(donation);
+    	
+    	if (result.hasErrors()) {
         	 redirect.addFlashAttribute("message", "Cantidad a donar erronea");
             return "redirect:/causes/"+causeId+"/donations/new";
-        } else {
-        	Cause cause = causeService.findCauseById(causeId);
-        	donation.setCause(cause);
-            donation.setDate(LocalDate.now());
-            donation.setClient(client);
-            try {
-            	causeService.getMoneyDonated(donation, donation.getAmount());
-            		causeService.saveDonation(donation);
-            		session.setAttribute("message", String.format("Se ha realizado una donación de %.02f EUR satisfactoriamente, muchas gracias.", donation.getAmount()));
-            	
-            }catch(IllegalArgumentException e) {
-                session.setAttribute("message", "No se pudo realizar la donación porque la causa esta cerrada.");
+    	}
+   if (cause.getMoneyRaised() > cause.getBudgetTarget()) {
+	   redirect.addFlashAttribute("message", "Cantidad erronea, sobrepaso el presupuesto");
+       return "redirect:/causes/"+causeId+"/donations/new";
             }
-            return "redirect:/causes/" + cause.getId();
-        }
+         else {
+         
+            return "redirect:/causes/"; 
     }
 
+}
 }

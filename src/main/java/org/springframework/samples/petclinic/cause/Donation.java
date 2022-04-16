@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -28,6 +29,7 @@ public class Donation extends BaseEntity {
     private LocalDate date;
 
     @NotNull
+    @Min(0)
     @Column(name = "amount")
     private double amount;
 

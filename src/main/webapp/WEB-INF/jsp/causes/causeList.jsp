@@ -25,15 +25,10 @@
 			<c:forEach items="${causes}" var="cause">
 				<tr>
 					<td><c:out value="${cause.name} " /></td>
-					<c:set var="contador" value="${0}" />
-					<td><c:forEach items="${cause.donations}" var="donation">
-
-							<c:set var="contador" value="${contador + donation.amount}" />
-
-
-						</c:forEach> <c:out value="${contador} " /></td>
-
-
+					
+					<td><c:out value="${cause.moneyRaised} " /></td>
+					
+						
 					<td><c:out value="${cause.budgetTarget} " /></td>
 
 					<td><spring:url value="/causes/{causeId}/donations/new" var="causeUpdateUrl">
