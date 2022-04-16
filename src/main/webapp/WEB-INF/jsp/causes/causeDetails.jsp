@@ -12,6 +12,10 @@
 
     <table class="table table-striped" >
         <tr>
+            <th>Nombre</th>
+            <td><b><c:out value="${cause.name}"/></b></td>
+        </tr>
+        <tr>
             <th>Descripción</th>
             <td><b><c:out value="${cause.description}"/></b></td>
         </tr>
@@ -31,8 +35,8 @@
             <tr>
                 <th>Número de donación</th>
                 <th>Nombre del cliente</th>
-                <th>fecha de donación</th>
-                <th>cantidad</th>
+                <th>Fecha de donación</th>
+                <th>Cantidad</th>
             </tr>
             <c:forEach var="donation" items="${cause.donations}">
                 <tr>

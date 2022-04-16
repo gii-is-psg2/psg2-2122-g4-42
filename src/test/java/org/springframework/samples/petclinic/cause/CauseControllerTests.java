@@ -7,10 +7,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +24,6 @@ public class CauseControllerTests {
 
 	private static final int TEST_CAUSE_ID = 1;
 
-	@Autowired
-	private CauseController causeController;
-
 	@MockBean
 	private CauseService causeService;
 
@@ -43,17 +36,19 @@ public class CauseControllerTests {
 		mockMvc.perform(get("/causes/new", TEST_CAUSE_ID)).andExpect(status().isOk())
 				.andExpect(view().name("causes/createCauseForm"));
 	}
-	
+
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessNewCauseFormSuccess() throws Exception {
 		mockMvc.perform(post("/causes/new", TEST_CAUSE_ID)
-		.param("name", "BuenaCausa")
-		.param("description", "con el fin de proteger a perros callejeros sevillanos")
-		.param("budgetTarget", "3000.0")
-		.param("organization", "SEVUS")
-		.with(csrf())).andExpect(status().is3xxRedirection())
-		.andExpect(view().name("redirect:/causes"));
+				.param("name", "BuenaCausa")
+				.param("description", "con el fin de proteger a perros callejeros sevillanos")
+				.param("budgetTarget", "3000.0")
+				.param("organization", "SEVUS")
+				.with(csrf())).andExpect(status().is3xxRedirection())
+				.andExpect(view().name("redirect:/causes"));
+	}
+
 	@BeforeEach
 	void setup() {
 		given(this.causeService.findCauseById(TEST_CAUSE_ID)).willReturn(new Cause());
@@ -72,6 +67,5 @@ public class CauseControllerTests {
 		mockMvc.perform(get("/causes/detail/{causeId}", TEST_CAUSE_ID)).andExpect(status().isOk())
 				.andExpect(model().attributeExists("cause"));
 	}
-
 
 }

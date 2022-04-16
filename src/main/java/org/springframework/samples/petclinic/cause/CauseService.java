@@ -3,7 +3,6 @@ package org.springframework.samples.petclinic.cause;
 import java.util.Collection;
 import java.util.List;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -15,7 +14,6 @@ public class CauseService {
     
     private CauseRepository causeRepository;
     private  DonationRepository donationRepository;
-    private Cause cause;
 
     @Autowired
     public CauseService(CauseRepository causeRepository,
@@ -41,6 +39,9 @@ public class CauseService {
 
     @Transactional
     public void deleteCause(int id){
+        for(Donation donation: donationRepository.findByCauseId(id)){
+            this.donationRepository.deleteById(donation.getId());
+        }
         causeRepository.deleteById(id);
     }
 
