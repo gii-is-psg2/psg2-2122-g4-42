@@ -33,6 +33,7 @@ public class Donation extends BaseEntity {
     @Column(name = "amount")
     private double amount;
 
+    @NotNull
     @NotEmpty
     @Column(name = "client")
     private String client;

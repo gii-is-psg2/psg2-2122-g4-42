@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.cause.Cause;
@@ -45,25 +46,25 @@ public class DonationController {
 
 
     @PostMapping("/new")
-    public String processCreationForm(RedirectAttributes redirect, HttpSession session, @PathVariable(name = "causeId") int causeId, @Valid Donation donation, BindingResult result, String client) {
-    	 Cause cause = causeService.findCauseById(causeId);
-     	donation.setCause(cause);
-         donation.setDate(LocalDate.now());
-         donation.setClient(client);
-         causeService.saveDonation(donation);
+    public String processCreationForm(RedirectAttributes redirect, HttpSession session, @PathVariable(name = "causeId") int causeId, @Valid Donation donation, BindingResult result,@NotNull String client) {
+ 
     	
     	if (result.hasErrors()) {
-        	 redirect.addFlashAttribute("message", "Cantidad a donar erronea");
+        	 redirect.addFlashAttribute("message", "Cantidad a donar erronea, o error en el nombre de la donacion");
             return "redirect:/causes/"+causeId+"/donations/new";
     	}
-   if (cause.getMoneyRaised() > cause.getBudgetTarget()) {
-	   redirect.addFlashAttribute("message", "Cantidad erronea, sobrepaso el presupuesto");
-       return "redirect:/causes/"+causeId+"/donations/new";
-            }
-         else {
-         
+    	
+   
+    	  else {
+    		
+    		 Cause cause = causeService.findCauseById(causeId);
+    	     	donation.setCause(cause);
+    	         donation.setDate(LocalDate.now());
+    	         donation.setClient(client);
+    	         causeService.saveDonation(donation);
+    	    	
             return "redirect:/causes/"; 
-    }
+         }
 
 }
 }

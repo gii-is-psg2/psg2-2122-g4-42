@@ -52,6 +52,10 @@ public class CauseService {
     @Transactional
     public void saveDonation(Donation  donation)  {
     	Cause cause = donation.getCause();
+    	 if (cause.getMoneyRaised() > cause.getBudgetTarget())
+    	throw new IllegalArgumentException();
+        double leftToFulfill = cause.getBudgetTarget() - cause.getMoneyRaised();
+        donation.setAmount(Math.min(donation.getAmount(), leftToFulfill));
             cause.setMoneyRaised(cause.getMoneyRaised() + donation.getAmount());
     
     	causeRepository.save(cause);
