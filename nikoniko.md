@@ -32,6 +32,7 @@
 | April 08      |     :-:       |      :-:       |      :-:       |      :-:       |    :smiley:    |      :-:       |
 | April 11      |     :-:       |      :-:       |      :-:       |      :-:       |    :worried:   |      :-:       |
 | April 12      |     :-:       |      :-:       |      :-:       |      :-:       |    :worried:   |      :-:       |
-| April 13      |     :-:       |      :-:       |      :-:       |      :-:       |    :fearful:   |      :-:       |
-| April 16      |     :-:       |      :-:       |      :-:       |      :-:       |    :smiley:    |      :-:       |
+| April 13      |     :-:       |      :-:       |      :-:       |      :-:       |    :fearful:   |    :smiley:    |
+| April 13      |     :-:       |      :-:       |      :-:       |      :-:       |    :-:         |    :smiley:    |
+| April 16      |:neutral_face: |      :-:       |      :-:       |      :-:       |    :smiley:    | :neutral_face: |
 
