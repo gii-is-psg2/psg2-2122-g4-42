@@ -30,9 +30,9 @@
             <h2 >Donaciones</h2>
             <tr>
                 <th>Número de donación</th>
-                <th>Cantidad</th>
-                <th>Número de donación</th>
-                <th>nombre</th>
+                <th>Nombre del cliente</th>
+                <th>fecha de donación</th>
+                <th>cantidad</th>
             </tr>
             <c:forEach var="donation" items="${cause.donations}">
                 <tr>
