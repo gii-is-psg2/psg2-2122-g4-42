@@ -2,7 +2,6 @@ package org.springframework.samples.petclinic.cause;
 
 import java.time.LocalDate;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
