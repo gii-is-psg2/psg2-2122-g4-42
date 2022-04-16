@@ -41,7 +41,7 @@
 						</spring:url> <a href="${fn:escapeXml(causeUpdateUrl)}">Hacer una donación</a>
 					</td>
 
-					<td><spring:url value="/causes/detail" var="causeDetailUrl">
+					<td><spring:url value="/causes/detail/{causeId}" var="causeDetailUrl">
 							<spring:param name="causeId" value="${cause.id}" />
 						</spring:url> <a href="${fn:escapeXml(causeDetailUrl)}">Ver detalles de la
 							causa</a></td>
