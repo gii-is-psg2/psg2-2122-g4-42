@@ -41,14 +41,14 @@ public class CauseControllerTests {
 	
 	@WithMockUser(value = "spring")
 	@Test
-	void testProcessNewHotelFormSuccess() throws Exception {
+	void testProcessNewCauseFormSuccess() throws Exception {
 		mockMvc.perform(post("/causes/new", TEST_CAUSE_ID)
 		.param("name", "BuenaCausa")
 		.param("description", "con el fin de proteger a perros callejeros sevillanos")
 		.param("budgetTarget", "3000.0")
 		.param("organization", "SEVUS")
-		.with(csrf())).andExpect(status().is2xxSuccessful())
-		.andExpect(view().name("causes/createCauseForm"));
+		.with(csrf())).andExpect(status().is3xxRedirection())
+		.andExpect(view().name("redirect:/causes"));
 	}
 
 
