@@ -14,9 +14,9 @@
     <form:form modelAttribute="cause" class="form-horizontal" id="add-cause-form">
         <div class="form-group has-feedback">
             <petclinic:inputField label="Nombre" name="name"/>
-            <petclinic:inputField label="descripción" name="description"/>
+            <petclinic:inputField label="Descripción" name="description"/>
             <petclinic:inputField label="Presupuesto Objetivo" name="budgetTarget"/>
-            <petclinic:inputField label="organización" name="organization"/>
+            <petclinic:inputField label="Organización" name="organization"/>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
