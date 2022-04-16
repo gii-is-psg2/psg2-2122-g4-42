@@ -40,7 +40,7 @@ public class CauseControllerTests {
 	@Test
 	void testInitDetailCausePage() throws Exception {
 		mockMvc.perform(get("/causes/detail/{causeId}", TEST_CAUSE_ID)).andExpect(status().isOk())
-				.andExpect(view().name("mav"));
+				.andExpect(view().name("/causes/causeDetails"));
 	}
 
 	@WithMockUser(value = "spring")
