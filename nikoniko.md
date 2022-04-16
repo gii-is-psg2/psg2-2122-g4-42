@@ -28,5 +28,10 @@
 | April 01      |:neutral_face: |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       | 
 | April 03      |     :-:       |      :-:       |    :smiley:    |      :-:       |      :-:       |      :-:       |
 | April 04      |     :-:       |      :-:       |      :-:       |   :smiley:     |      :-:       |      :-:       |
-| April 06      |     :-:       |      :-:       |    :smiley:    |      :-:       |      :-:       |      :-:       |
+| April 06      |     :-:       |      :-:       |    :smiley:    |      :-:       | :neutral_face: |      :-:       |
+| April 08      |     :-:       |      :-:       |      :-:       |      :-:       |    :smiley:    |      :-:       |
+| April 11      |     :-:       |      :-:       |      :-:       |      :-:       |    :worried:   |      :-:       |
+| April 12      |     :-:       |      :-:       |      :-:       |      :-:       |    :worried:   |      :-:       |
+| April 13      |     :-:       |      :-:       |      :-:       |      :-:       |    :fearful:   |      :-:       |
+| April 16      |     :-:       |      :-:       |      :-:       |      :-:       |    :smiley:    |      :-:       |
 
