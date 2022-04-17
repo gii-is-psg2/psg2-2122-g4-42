@@ -26,13 +26,15 @@
 | March 31      |     :-:       |      :-:       |    :smiley:    |    :smiley:    |      :-:       |      :-:       |
 | April 01      |:neutral_face: |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       | 
 | April 03      |     :-:       |      :-:       |    :smiley:    |      :-:       |      :-:       |      :-:       |
-| April 04      |     :-:       |      :-:       |      :-:       |   :smiley:     |      :-:       |      :-:       |
+| April 04      |     :-:       |      :-:       |      :-:       |    :smiley:    |      :-:       |      :-:       |
+| April 05      |     :-:       |    :smiley:    |      :-:       |      :-:       |      :-:       |      :-:       |
 | April 06      |     :-:       |      :-:       |    :smiley:    |      :-:       | :neutral_face: |      :-:       |
 | April 08      |     :-:       |      :-:       |      :-:       |      :-:       |    :smiley:    |      :-:       |
 | April 11      |     :-:       |      :-:       |      :-:       |      :-:       |    :worried:   |      :-:       |
 | April 12      |     :-:       |      :-:       |      :-:       |      :-:       |    :worried:   |      :-:       |
 | April 13      |     :-:       |      :-:       |      :-:       |      :-:       |    :fearful:   |    :smiley:    |
 | April 13      |     :-:       |      :-:       |      :-:       |      :-:       |    :-:         |    :smiley:    |
-| April 16      |:neutral_face: |      :-:       |      :-:       |      :-:       |    :smiley:    | :neutral_face: |
-| April 17      |     :-:       |      :-:       |      :-:       |      :-:       |    :smiley:    |      :-:       |
+| April 15      |     :-:       | :neutral_face: |      :-:       |      :-:       |    :-:         |      :-:       |
+| April 16      |:neutral_face: | :neutral_face: |      :-:       |      :-:       |    :smiley:    | :neutral_face: |
+| April 17      |:neutral_face: | :neutral_face: | :neutral_face: |    :smiley:    |    :smiley:    | :neutral_face: |
 
