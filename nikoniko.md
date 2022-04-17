@@ -10,7 +10,6 @@
 
 :fearful:   (I´m desperate, I need help)        
 
-
 ## Sprint Template
 
 | Day           |     Marta    	|  Pablo Santos  |     Diego      |  Juan Antonio  |  Pablo Parra   |      Mario     |
@@ -35,4 +34,5 @@
 | April 13      |     :-:       |      :-:       |      :-:       |      :-:       |    :fearful:   |    :smiley:    |
 | April 13      |     :-:       |      :-:       |      :-:       |      :-:       |    :-:         |    :smiley:    |
 | April 16      |:neutral_face: |      :-:       |      :-:       |      :-:       |    :smiley:    | :neutral_face: |
+| April 17      |     :-:       |      :-:       |      :-:       |      :-:       |    :smiley:    |      :-:       |
 
