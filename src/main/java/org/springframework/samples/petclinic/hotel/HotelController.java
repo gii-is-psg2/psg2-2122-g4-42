@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.samples.petclinic.pet.Pet;
 import org.springframework.samples.petclinic.pet.PetService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -18,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HotelController {
+
+	private static final String VIEWS_HOTEL_CREATE_OR_UPDATE_FORM="pets/createOrUpdateHotelForm";
 
 	private final HotelService hotelService;
 	private final PetService petService;
@@ -36,8 +37,8 @@ public class HotelController {
 
 	@ModelAttribute("hotel")
 	public Hotel loadPetWithHotel(@PathVariable("petId") int petId) {
-		Pet pet = this.petService.findPetById(petId);
-		Hotel hotel = new Hotel();
+		var pet = this.petService.findPetById(petId);
+		var hotel = new Hotel();
 		pet.addHotel(hotel);
 		return hotel;
 	}
@@ -50,19 +51,19 @@ public class HotelController {
 	@GetMapping(value = "/owners/*/pets/{petId}/hotel/new")
 	public String initNewHotelForm(@PathVariable("petId") int petId, Map<String, Object> model) {
 
-		return "pets/createOrUpdateHotelForm";
+		return VIEWS_HOTEL_CREATE_OR_UPDATE_FORM;
 	}
 
 	@PostMapping(value = "/owners/{ownerId}/pets/{petId}/hotel/new")
 	public String processNewHotelForm(@Valid Hotel hotel, @PathVariable("petId") int petId, BindingResult result)
 			throws DataAccessException {
 		if (result.hasErrors()) {
-			return "pets/createOrUpdateHotelForm";
+			return VIEWS_HOTEL_CREATE_OR_UPDATE_FORM;
 		} else if (hotel.getDate1().isAfter(hotel.getDate2())) {
 			result.rejectValue("date2", "Fecha de salida anterior a la fecha de entrada",
 					"Fecha de salida anterior a la fecha de entrada.");
 
-			return "pets/createOrUpdateHotelForm";
+			return VIEWS_HOTEL_CREATE_OR_UPDATE_FORM;
 		} else {
 			for (Hotel ho : hotelService.findHotelsByPetId(petId)) {
 				if (ho.getDate1().equals(hotel.getDate1())) {
@@ -70,13 +71,13 @@ public class HotelController {
 							"Ya tienes una reserva existente para ese dia",
 							"Ya tienes una reserva existente para ese dia");
 
-					return "pets/createOrUpdateHotelForm";
+					return VIEWS_HOTEL_CREATE_OR_UPDATE_FORM;
 				}else if (hotel.getDate1().isBefore(ho.getDate2())) {
 					result.rejectValue("room",
 							"No puedes hacer una reserva porque su mascota ya esta hospedada en una habitacion este dia",
 							"No puedes hacer una reserva porque su mascota ya esta hospedada en una habitacion este dia");
 
-					return "pets/createOrUpdateHotelForm";
+					return VIEWS_HOTEL_CREATE_OR_UPDATE_FORM;
 				}
 			}
 

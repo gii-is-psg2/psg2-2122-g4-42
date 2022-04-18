@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/causes/{causeId}/donations")
 public class DonationController {
 
-    private final String VIEWS_CREATE_DONATIONS_FORM = "causes/donationForm";
+    private static final String VIEWS_CREATE_DONATIONS_FORM = "causes/donationForm";
 
     private CauseService causeService;
 
@@ -30,7 +30,7 @@ public class DonationController {
 
     @GetMapping("/new")
     public String initCreationForm(@PathVariable(name = "causeId") int causeId, Model model) {
-        Cause cause = this.causeService.findCauseById(causeId);
+        var cause = this.causeService.findCauseById(causeId);
         model.addAttribute("cause", cause);
         model.addAttribute("donation", new Donation());
         model.addAttribute("moneyLeft", cause.getBudgetTarget() - cause.getMoneyRaised());
@@ -47,7 +47,7 @@ public class DonationController {
             return "redirect:/causes/" + causeId + "/donations/new";
         } else {
 
-            Cause cause = causeService.findCauseById(causeId);
+            var cause = causeService.findCauseById(causeId);
             donation.setCause(cause);
             donation.setDate(LocalDate.now());
             donation.setClient(client);
