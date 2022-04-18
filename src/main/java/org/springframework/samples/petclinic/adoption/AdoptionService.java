@@ -48,7 +48,6 @@ public class AdoptionService {
     @Transactional
     public void deleteAllAdoptions() {
         this.requestAdoptionRepository.deleteAll();
-        // this.adoptionRepository.deleteAll();
         Collection<Adoption> adoptions = this.adoptionRepository.findAll();
         for(Adoption adoption: adoptions){
             deleteAdoption(adoption.getId());

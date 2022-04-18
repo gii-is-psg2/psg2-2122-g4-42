@@ -6,9 +6,7 @@ import org.springframework.samples.petclinic.owner.OwnerService;
 import org.springframework.samples.petclinic.pet.Pet;
 import org.springframework.samples.petclinic.pet.PetService;
 import org.springframework.samples.petclinic.user.Authorities;
-import org.springframework.samples.petclinic.user.User;
 import org.springframework.samples.petclinic.user.UserService;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -43,6 +41,12 @@ public class AdoptionController {
 
     private final UserService userService;
 
+    final String ownerStr = "owner";
+
+    private static final String VIEWS_REQUEST_ADOPTION_CREATE_FORM = "adoptions/createRequestAdoptionForm";
+
+    private static final String VIEWS_REDIRECT_ADOPTION_LIST = "redirect:/adoptions";
+
     @Autowired
     public AdoptionController(AdoptionService adoptionService, RequestAdoptionService requestAdoptionService,
             PetService petService, OwnerService ownerService, UserService userService) {
@@ -57,17 +61,17 @@ public class AdoptionController {
     public String showAdoptionList(Map<String, Object> model) {
         List<Adoption> allAdoptions = this.adoptionService.findAllAdoptions();
 
-        List<Adoption> adoptionsAvailables = new ArrayList<Adoption>();
+        List<Adoption> adoptionsAvailables = new ArrayList<>();
         adoptionsAvailables.addAll(allAdoptions);
-        List<Adoption> myAdoptions = new ArrayList<Adoption>();
-        Set<RequestAdoption> myRequestAdoptions = new HashSet<RequestAdoption>();
+        List<Adoption> myAdoptions = new ArrayList<>();
+        Set<RequestAdoption> myRequestAdoptions = new HashSet<>();
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        User user = this.userService.findByUsername(username);
+        var user = this.userService.findByUsername(username);
         Set<Authorities> authorities = user.getAuthorities();
         for (Authorities authority : authorities) {
-            if (authority.getAuthority().equals("owner")) {
+            if (authority.getAuthority().equals(ownerStr)) {
                 Owner owner = this.ownerService.findByUsername(username);
                 List<Pet> myPets = this.ownerService.findOwnerById(owner.getId()).getPets();
                 for (Adoption adoption : allAdoptions) {
@@ -102,15 +106,15 @@ public class AdoptionController {
 
     @ModelAttribute("pets")
     public Collection<Pet> populatePet() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        User user = this.userService.findByUsername(username);
+        var user = this.userService.findByUsername(username);
         Set<Authorities> authorities = user.getAuthorities();
         for (Authorities authority : authorities) {
-            if (authority.getAuthority().equals("owner")) {
-                Owner owner = this.ownerService.findByUsername(username);
+            if (authority.getAuthority().equals(ownerStr)) {
+                var owner = this.ownerService.findByUsername(username);
                 List<Pet> myPets = this.ownerService.findOwnerById(owner.getId()).getPets();
-                List<Pet> petsForAdoption = new ArrayList<Pet>();
+                List<Pet> petsForAdoption = new ArrayList<>();
                 petsForAdoption.addAll(myPets);
                 for (Adoption adoption : this.adoptionService.findAllAdoptions()) {
                     if (myPets.contains(adoption.getPet()))
@@ -124,7 +128,7 @@ public class AdoptionController {
 
     @GetMapping(value = "/adoptions/new")
     public String initCreationForm(Map<String, Object> model) {
-        Adoption adoption = new Adoption();
+        var adoption = new Adoption();
         model.put("adoption", adoption);
 
         return "adoptions/createAdoptionForm";
@@ -134,58 +138,58 @@ public class AdoptionController {
     public String createAdoptionForm(@Valid Adoption adoption,
             BindingResult result) {
         if (result.hasErrors()) {
-            return "adoptions/createRequestAdoptionForm";
+            return VIEWS_REQUEST_ADOPTION_CREATE_FORM;
         } else {
             this.adoptionService.saveAdoption(adoption);
-            return "redirect:/adoptions";
+            return VIEWS_REDIRECT_ADOPTION_LIST;
         }
     }
 
     @GetMapping(value = "/adoptions/acceptRequest/{requestAdoptionId}")
     public String acceptRequest(@PathVariable("requestAdoptionId") int requestAdoptionId) {
-        RequestAdoption requestAdoption = this.requestAdoptionService.findRequestAdoptionById(requestAdoptionId);
+        var requestAdoption = this.requestAdoptionService.findRequestAdoptionById(requestAdoptionId);
         requestAdoption.setStatus(Status.APPROVED);
         this.requestAdoptionService.saveRequestAdoption(requestAdoption);
-        Adoption adoption = this.adoptionService.findAllAdoptions().stream()
+        var adoption = this.adoptionService.findAllAdoptions().stream()
                 .filter(a -> a.getRequestAdoptions().contains(requestAdoption))
                 .collect(Collectors.toList()).get(0);
-        Owner newOwner = requestAdoption.getOwner();
-        Pet pet = adoption.getPet();
+        var newOwner = requestAdoption.getOwner();
+        var pet = adoption.getPet();
         newOwner.addPet(pet);
         this.ownerService.saveOwner(newOwner);
         this.adoptionService.deleteAdoption(adoption.getId());
-        return "redirect:/adoptions";
+        return VIEWS_REDIRECT_ADOPTION_LIST;
     }
 
     @GetMapping(value = "/adoptions/denyRequest/{requestAdoptionId}")
     public String denyRequest(@PathVariable("requestAdoptionId") int requestAdoptionId) {
-        RequestAdoption requestAdoption = this.requestAdoptionService.findRequestAdoptionById(requestAdoptionId);
+        var requestAdoption = this.requestAdoptionService.findRequestAdoptionById(requestAdoptionId);
         requestAdoption.setStatus(Status.DENIED);
         this.requestAdoptionService.saveRequestAdoption(requestAdoption);
-        return "redirect:/adoptions";
+        return VIEWS_REDIRECT_ADOPTION_LIST;
     }
 
     @GetMapping(value = "/adoptions/{adoptionId}/request")
     public String initCreationFormRequestAdoption(Map<String, Object> model) {
-        RequestAdoption requestAdoption = new RequestAdoption();
+        var requestAdoption = new RequestAdoption();
         model.put("requestAdoption", requestAdoption);
 
-        return "adoptions/createRequestAdoptionForm";
+        return VIEWS_REQUEST_ADOPTION_CREATE_FORM;
     }
 
     @PostMapping(value = "/adoptions/{adoptionId}/request")
     public String createRequestForm(@PathVariable("adoptionId") int adoptionId, @Valid RequestAdoption requestAdoption,
             BindingResult result) {
-        Adoption adoption = this.adoptionService.findAdoptionById(adoptionId);
+        var adoption = this.adoptionService.findAdoptionById(adoptionId);
         Collection<RequestAdoption> requests = adoption.getRequestAdoptions();
 
         Owner owner = null;
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        User user = this.userService.findByUsername(username);
+        var user = this.userService.findByUsername(username);
         Set<Authorities> authorities = user.getAuthorities();
         for (Authorities authority : authorities) {
-            if (authority.getAuthority().equals("owner")) {
+            if (authority.getAuthority().equals(ownerStr)) {
                 owner = this.ownerService.findByUsername(username);
             }
         }
@@ -198,14 +202,14 @@ public class AdoptionController {
                 requests.add(requestAdoption);
                 adoption.setRequestAdoptions(requests);
                 this.requestAdoptionService.saveRequestAdoption(requestAdoption);
-                return "redirect:/adoptions";
+                return VIEWS_REDIRECT_ADOPTION_LIST;
             }
-            return "adoptions/createRequestAdoptionForm";
+            return VIEWS_REQUEST_ADOPTION_CREATE_FORM;
         } else {
             requests.add(requestAdoption);
             adoption.setRequestAdoptions(requests);
             this.requestAdoptionService.saveRequestAdoption(requestAdoption);
-            return "redirect:/adoptions";
+            return VIEWS_REDIRECT_ADOPTION_LIST;
         }
     }
 
