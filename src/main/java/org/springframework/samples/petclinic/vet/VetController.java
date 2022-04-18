@@ -40,7 +40,7 @@ import javax.validation.Valid;
 @Controller
 public class VetController {
 
-	public static String VIEWS_VET_CREATE_OR_UPDATE_FORM="/vets/createOrUpdateVetForm";
+	private static final String VIEWS_VET_CREATE_OR_UPDATE_FORM="/vets/createOrUpdateVetForm";
 
 	private final VetService vetService;
 
@@ -57,7 +57,7 @@ public class VetController {
 		// Here we are returning an object of type 'Vets' rather than a collection of Vet
 		// objects
 		// so it is simpler for Object-Xml mapping
-		Vets vets = new Vets();
+		var vets = new Vets();
 		vets.getVetList().addAll(this.vetService.findVets());
 		model.put("vets", vets);
 		return "vets/vetList";
@@ -68,13 +68,13 @@ public class VetController {
 		// Here we are returning an object of type 'Vets' rather than a collection of Vet
 		// objects
 		// so it is simpler for JSon/Object mapping
-		Vets vets = new Vets();
+		var vets = new Vets();
 		vets.getVetList().addAll(this.vetService.findVets());
 		return vets;
 	}
 	@GetMapping(value = "/vets/new")
 	public String initCreationForm(Map<String, Object> model) {
-		Vet vet = new Vet();
+		var vet = new Vet();
 		model.put("vet", vet);
 		
 		return "vets/createOrUpdateVetForm";
@@ -93,7 +93,7 @@ public class VetController {
 
 	@GetMapping(value = "/vets/{vetId}/edit")
 	public String initUpdateOwnerForm(@PathVariable("vetId") int vetId, Model model) {
-		Vet vet = this.vetService.findById(vetId);
+		var vet = this.vetService.findById(vetId);
 		model.addAttribute(vet);
 		return VIEWS_VET_CREATE_OR_UPDATE_FORM;
 	}
@@ -113,9 +113,9 @@ public class VetController {
 
 	@GetMapping(value = "/vets/{vetId}/specialties/edit")
 	public String editVetSpecialtiesFormInit(@PathVariable("vetId") Integer vetId, Map<String, Object> model) {
-		Specialty s = new Specialty();
+		var s = new Specialty();
 		List<Specialty> allSpecialties = specialtyService.getAllSpecialties();
-		Vet v = vetService.findById(vetId);
+		var v = vetService.findById(vetId);
 		model.put("specialty", s);
 		model.put("specialtiesList", allSpecialties);
 		model.put("vet", v);
@@ -128,8 +128,8 @@ public class VetController {
 		if (result.hasErrors()) {
 			return "vets/editVetspecialties";
 		}else {
-			Vet v = vetService.findById(vetId);
-			Specialty s = specialtyService.getSpecialtyByName(specialty.getName());
+			var v = vetService.findById(vetId);
+			var s = specialtyService.getSpecialtyByName(specialty.getName());
 			v.addSpecialty(s);
 			vetService.saveVet(v);
 			

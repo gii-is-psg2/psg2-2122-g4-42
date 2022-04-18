@@ -35,7 +35,7 @@ public class CauseController {
 	}
 	@GetMapping(value = "/causes/new")
 	public String initCreationForm(Map<String, Object> model) {
-		Cause cause = new Cause();
+		var cause = new Cause();
 		model.put("cause", cause);
 		return VIEWS_CAUSE_CREATE_FORM;
 	}
@@ -55,7 +55,7 @@ public class CauseController {
 	
 	@GetMapping("/causes/detail/{causeId}")
 	public ModelAndView showCauseDetails(@PathVariable("causeId") int causeId) {
-		ModelAndView mav = new ModelAndView("/causes/causeDetails");
+		var mav = new ModelAndView("/causes/causeDetails");
 		mav.addObject(this.causeService.findCauseById(causeId));
 		mav.addObject(this.causeService.findDonationsByCauseId(causeId));
 		return mav;
