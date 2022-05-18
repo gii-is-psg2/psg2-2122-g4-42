@@ -8,6 +8,9 @@
 
 <petclinic:layout pageName="causes">
 
+	<spring:url value="/causes/search" var="searchUrl">
+	</spring:url> <a href="${fn:escapeXml(searchUrl)}">Buscar más información externa</a>
+
 	<h2>Causas</h2>
 
 	<table id="causesTable" class="table table-striped">
