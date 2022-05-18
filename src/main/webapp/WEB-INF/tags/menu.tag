@@ -58,7 +58,11 @@
 					<span>Error</span>
 				</petclinic:menuItem>
 				
-				
+				<petclinic:menuItem active="${name eq 'changelog'}" url="/changelog"
+					title="changelog">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Cambios</span>
+				</petclinic:menuItem>
 
 			</ul>
 
