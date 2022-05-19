@@ -10,14 +10,14 @@ import org.springframework.samples.petclinic.model.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
-@Entity
 @Table(name = "searchs")
 public class Search extends BaseEntity {
     
     @NotEmpty
-    @Column(name = "search")
-    private String search;
+    @Column(name = "text")
+    private String text;
 
 }

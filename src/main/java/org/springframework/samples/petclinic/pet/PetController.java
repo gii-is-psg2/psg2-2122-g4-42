@@ -104,7 +104,7 @@ public class PetController {
 	public String processNotifForm(@PathVariable("petId") int petId, Owner owner, @Valid Notification msg,
 			BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
-			model.put("msg", msg);
+			model.put("notification", msg);
 			return VIEWS_PETS_NOTIF_FORM;
 		} else {
 			String to = owner.getTelephone();
