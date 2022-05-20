@@ -49,6 +49,8 @@ public class PetService {
 
 	private RequestAdoptionRepository requestAdoptionRepository;
 
+	// private NotificationRepository notificationRepository;
+
 	@Autowired
 	public PetService(PetRepository petRepository,
 			VisitRepository visitRepository, HotelRepository hotelRepository, AdoptionRepository adoptionRepository,
@@ -135,5 +137,10 @@ public class PetService {
 	public void deleteAll() {
 		petRepository.deleteAll();
 	}
+
+	// @Transactional
+	// public void saveNotification(Notification notification) throws DataAccessException {
+	// 	notificationRepository.save(notification);
+	// }
 
 }
