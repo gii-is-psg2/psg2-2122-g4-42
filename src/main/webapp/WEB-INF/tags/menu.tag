@@ -57,18 +57,19 @@
 					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
 					<span>Error</span>
 				</petclinic:menuItem>
-
-				<petclinic:menuItem active="${name eq 'support'}" url="contactpage"
+        
+				<petclinic:menuItem active="${name eq 'changelog'}" url="/changelog"
+					title="changelog">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Cambios</span>
+				</petclinic:menuItem>
+        
+        <petclinic:menuItem active="${name eq 'support'}" url="contactpage"
 					title="Página de contacto con soporte">
 					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
 					<span>Pagina de soporte</span>
 				</petclinic:menuItem>
-				
-
 			</ul>
-
-
-
 
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="!isAuthenticated()">
