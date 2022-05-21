@@ -61,7 +61,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h4> página de soporte : https://github.com/gii-is-PSG2/spring-petclinic/issues </h4> 
+            <h4> Página de soporte : <a href="https://oitilo.us.es/itop">iTop</a></h4> 
         </div>
     </div>
 
