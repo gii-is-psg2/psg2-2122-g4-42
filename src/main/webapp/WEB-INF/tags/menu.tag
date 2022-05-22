@@ -65,10 +65,17 @@
 				</petclinic:menuItem>
         
         <petclinic:menuItem active="${name eq 'support'}" url="contactpage"
-					title="Página de contacto con soporte">
+					title="PÃ¡gina de contacto con soporte">
 					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
 					<span>Pagina de soporte</span>
 				</petclinic:menuItem>
+        
+				<petclinic:menuItem active="${name eq 'clinics'}" url="/plans"
+					title="palnes">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Cambiate de plan y mejora tu aplicación!</span>
+				</petclinic:menuItem>
+
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">

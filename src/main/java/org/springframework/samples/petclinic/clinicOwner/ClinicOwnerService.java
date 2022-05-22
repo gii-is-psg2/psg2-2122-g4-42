@@ -13,9 +13,14 @@
  */
 package org.springframework.samples.petclinic.clinicOwner;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.user.Authorities;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
+import org.springframework.samples.petclinic.user.User;
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,14 +41,76 @@ public class ClinicOwnerService {
 		this.clinicOwnerRepository = clinicOwnerRepository;
 	}
 
-	@Transactional
-	public void saveClinicOwner(ClinicOwner clinicOwner, String authority) throws DataAccessException {
-		clinicOwnerRepository.save(clinicOwner);
-		userService.saveUser(clinicOwner.getUser());
-		authoritiesService.saveAuthorities(clinicOwner.getUser().getUsername(), "basic");
+	@Transactional(readOnly = true)
+	public List<ClinicOwner> findAllClinicOwners() {
+		return clinicOwnerRepository.findAll();
 	}
 
+	@Transactional
+	public void saveClinicOwner(ClinicOwner clinicOwner) throws DataAccessException {
+		clinicOwner.setPlan(ClinicOwnerPlanType.BASICO);
+		clinicOwnerRepository.save(clinicOwner);
+		Set<Authorities> a = new HashSet<>();
+		clinicOwner.getUser().setAuthorities(a);
+		Set<Authorities> conj = authoritiesService.getAuthoritiesByUSer(clinicOwner.getUser());
+		for (Authorities authorities : conj) {
+			this.authoritiesService.deleteAuthoritie(authorities);
+		}
+		userService.saveUser(clinicOwner.getUser());
+		authoritiesService.saveAuthorities(clinicOwner.getUser().getUsername(), "basic");
 
-	
+	}
+
+	@Transactional
+	public void updatePlanBasico(ClinicOwner clinicOwner) throws DataAccessException {
+		clinicOwner.setPlan(ClinicOwnerPlanType.BASICO);
+		clinicOwnerRepository.save(clinicOwner);
+		Set<Authorities> a = new HashSet<>();
+		clinicOwner.getUser().setAuthorities(a);
+		Set<Authorities> conj = authoritiesService.getAuthoritiesByUSer(clinicOwner.getUser());
+		for (Authorities authorities : conj) {
+			this.authoritiesService.deleteAuthoritie(authorities);
+		}
+		userService.saveUser(clinicOwner.getUser());
+		authoritiesService.saveAuthorities(clinicOwner.getUser().getUsername(), "basic");
+
+	}
+
+	@Transactional
+	public void updatePlanAdvanced(ClinicOwner clinicOwner) throws DataAccessException {
+		clinicOwner.setPlan(ClinicOwnerPlanType.AVANZADO);
+		clinicOwnerRepository.save(clinicOwner);
+		Set<Authorities> a = new HashSet<>();
+		clinicOwner.getUser().setAuthorities(a);
+		Set<Authorities> conj = authoritiesService.getAuthoritiesByUSer(clinicOwner.getUser());
+		for (Authorities authorities : conj) {
+			this.authoritiesService.deleteAuthoritie(authorities);
+		}
+
+		userService.saveUser(clinicOwner.getUser());
+		authoritiesService.saveAuthorities(clinicOwner.getUser().getUsername(), "advanced");
+
+	}
+
+	@Transactional
+	public void updatePlanProfesional(ClinicOwner clinicOwner) throws DataAccessException {
+		clinicOwner.setPlan(ClinicOwnerPlanType.PROFESIONAL);
+		clinicOwnerRepository.save(clinicOwner);
+		Set<Authorities> a = new HashSet<>();
+		clinicOwner.getUser().setAuthorities(a);
+		Set<Authorities> conj = authoritiesService.getAuthoritiesByUSer(clinicOwner.getUser());
+		for (Authorities authorities : conj) {
+			this.authoritiesService.deleteAuthoritie(authorities);
+		}
+
+		userService.saveUser(clinicOwner.getUser());
+		authoritiesService.saveAuthorities(clinicOwner.getUser().getUsername(), "pro");
+	}
+
+	@Transactional(readOnly = true)
+	public ClinicOwner findByUsername(String username) throws DataAccessException {
+		User user = userService.findByUsername(username);
+		return clinicOwnerRepository.findByUser(user);
+	}
 
 }
