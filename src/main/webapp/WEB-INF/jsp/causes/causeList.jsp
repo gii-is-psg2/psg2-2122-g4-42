@@ -2,12 +2,33 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
 
 <petclinic:layout pageName="causes">
-
+	<jsp:body>
+	<h2>Búsqueda externa</h2>
+        <form:form modelAttribute="search"
+                   class="form-horizontal">
+            <div class="form-group has-feedback">
+                <petclinic:inputField label="Búsqueda" name="text"/>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-default" type="submit">Buscar</button>                    
+                </div>
+            </div>
+        </form:form>
+	<div style="text-align: center;">
+		<c:forEach items="${results}" var="result">
+				<c:set var="searched" value="${fn:split(result,',')}"/>
+				<a href="${searched[0]}"><c:out value="${searched[1]}"/></a><br/>
+			</c:forEach>
+	</div>
+		
+	<br/>
 	<h2>Causas</h2>
 
 	<table id="causesTable" class="table table-striped">
@@ -55,5 +76,5 @@
         
     </table>
 
-
+</jsp:body>
 </petclinic:layout>

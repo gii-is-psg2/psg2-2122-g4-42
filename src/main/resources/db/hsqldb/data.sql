@@ -22,6 +22,8 @@ INSERT INTO users(username,password,enabled) VALUES ('dueno9','du3n0',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (11,'dueno9','owner');
 INSERT INTO users(username,password,enabled) VALUES ('dueno10','du3n0',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (12,'dueno10','owner');
+INSERT INTO users(username,password,enabled) VALUES ('clinicOwner','clinic',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (13,'clinicOwner','basic');
 -- One vet user, named vet1 with passwor v3t
 INSERT INTO users(username,password,enabled) VALUES ('veterinario1','v3t3rinario',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (3,'veterinario1','veterinarian');
@@ -67,6 +69,10 @@ INSERT INTO owners VALUES (7, 'Jeff', 'Black', 'Paseo Oscuro', 'Sevilla', '60855
 INSERT INTO owners VALUES (8, 'Maria', 'Escobito', 'Calle Escobas', 'Madrid', '6085557683', 'dueno8');
 INSERT INTO owners VALUES (9, 'David', 'Estevez', 'Avenida Cisne', 'Madrid', '6085559435', 'dueno9');
 INSERT INTO owners VALUES (10, 'Carlos', 'Esteban', 'Avenida Independencia', 'Cadiz', '6085555487', 'dueno10');
+
+INSERT INTO clinics(id,name,address,city,telephone,plan,username) VALUES (1, 'Clinica Prueba', 'Avenida Reina Mercedes', 'Sevilla', '6085555487', 'BASICO', 'clinicOwner'); 
+
+
 
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (1, 'Leonardo', '2010-09-07', 1, 1);
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (2, 'Basilea', '2012-08-06', 6, 2);

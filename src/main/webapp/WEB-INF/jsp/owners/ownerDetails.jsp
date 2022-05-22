@@ -51,8 +51,17 @@
 
     <table class="table table-striped" >
         <c:forEach var="pet" items="${owner.pets}">
-
+            
             <tr >
+                <td valign="top">
+                    <spring:url value="{ownerId}/pets/{petId}/notif" var="notifUrl">
+                        <spring:param name="ownerId" value="${owner.id}"/>
+                        <spring:param name="petId" value="${pet.id}"/>
+                    </spring:url>
+                    <a href="${fn:escapeXml(notifUrl)}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+                    </a>
+                </td>
                 <td valign="top" >
                     <dl class="dl-horizontal">
                         <dt>¿Eliminar mascota?</dt>
