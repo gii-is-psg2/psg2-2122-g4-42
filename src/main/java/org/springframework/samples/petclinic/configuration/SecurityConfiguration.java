@@ -37,12 +37,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/", "/oups").permitAll()
 				.antMatchers("/users/new").permitAll()
 				.antMatchers("/changelog").permitAll()
+				.antMatchers("/plans/**").permitAll()
 				
 				.antMatchers("/admin/**").hasAnyAuthority("admin")
-				.antMatchers("/owners/**").hasAnyAuthority("owner", "admin", "basic","advaced","pro")
+				.antMatchers("/owners/**").hasAnyAuthority("owner", "admin", "basic","advanced","pro")
 				.antMatchers("/vets").authenticated()
-				.antMatchers("/vets/**").hasAnyAuthority("basic","advaced","pro","admin")
-				.antMatchers("/adoptions/**").hasAnyAuthority("owner","admin","advaced","pro")
+				.antMatchers("/vets/**").hasAnyAuthority("basic","advanced","pro","admin")
+				.antMatchers("/adoptions/**").hasAnyAuthority("owner","admin","advanced","pro")
 				.antMatchers("/owners/*/pets/{petId}/hotel").hasAnyAuthority("owner","admin","pro")	
 				.antMatchers("/causes/**").hasAnyAuthority("admin","pro")
 
