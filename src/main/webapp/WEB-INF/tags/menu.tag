@@ -65,15 +65,15 @@
 				</petclinic:menuItem>
         
         <petclinic:menuItem active="${name eq 'support'}" url="contactpage"
-					title="PÃ¡gina de contacto con soporte">
+					title="Pagina de contacto con soporte">
 					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
 					<span>Pagina de soporte</span>
 				</petclinic:menuItem>
         
 				<petclinic:menuItem active="${name eq 'clinics'}" url="/plans"
-					title="palnes">
+					title="planes">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Cambiate de plan y mejora tu aplicación!</span>
+					<span>Cambiate de plan y mejora tu aplicacion!</span>
 				</petclinic:menuItem>
 
 			</ul>
