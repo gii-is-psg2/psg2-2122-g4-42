@@ -41,8 +41,8 @@
 | May   13      |:neutral_face: |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |
 | May   14      |:neutral_face: |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |
 | May   16      |:worried:      |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |
-| May   17      |:smiley:       |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |
-| May   18      |:neutral_face: |      :-:       |    :smiley:    |    :smiley:    |      :-:       |      :-:       |
-| May   20      |:smiley:       |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |
-| May   21      |       :-:     |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |
-| May   22      |       :-:     |      :-:       |      :-:       |    :worried:   |      :-:       |      :-:       |
+| May   17      |:smiley:       |      :worried:       |      :-:       |      :-:       |      :-:       |      :-:       |
+| May   18      |:neutral_face: |      :worried:       |    :smiley:    |    :smiley:    |      :-:       |      :smiley:       |
+| May   20      |:smiley:       |      :worried:       |      :-:       |      :-:       |      :-:       |      :smiley:       |
+| May   21      |       :-:     |      :worried:       |      :-:       |      :-:       |      :-:       |      :-:       |
+| May   22      |       :-:     |      :worried:       |      :-:       |    :worried:   |      :-:       |      :smiley:       |
