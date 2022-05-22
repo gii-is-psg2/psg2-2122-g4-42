@@ -38,11 +38,11 @@
 | April 16      |:neutral_face: | :neutral_face: |      :-:       |      :-:       |    :smiley:    | :neutral_face: | 
 | April 17      |:neutral_face: | :neutral_face: | :neutral_face: |    :smiley:    |    :smiley:    | :neutral_face: |
 | May   01      |:worried:      |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |
-| May   13      |:neutral_face: |      :-:       |      :-:       |      :-:       |      :-:       |      :-:       |
+| May   13      |:neutral_face: |      :-:       |      :smiley:  |      :-:       |      :-:       |      :-:       |
 | May   14      |:neutral_face: |      :worried: |      :-:       |      :-:       |      :-:       |      :-:       |
-| May   16      |:worried:      |      :worried: |      :-:       |      :-:       |      :-:       |      :-:       |
+| May   16      |:worried:      |      :worried: |      :smiley:  |      :-:       |      :-:       |      :-:       |
 | May   17      |:smiley:       |      :worried: |      :-:       |      :-:       |:neutral_face:  |      :-:       |
 | May   18      |:neutral_face: |      :worried: |    :smiley:    |    :smiley:    | :smiley:       |      :smiley:  |
-| May   20      |:smiley:       |      :worried: |      :-:       |      :-:       |   :smiley:     |      :smiley:  |
+| May   20      |:smiley:       |      :worried: |      :smiley:  |      :-:       |   :smiley:     |      :smiley:  |
 | May   21      |       :-:     |      :worried: |      :-:       |      :-:       | :neutral_face: |      :-:       |
 | May   22      | :neutral_face:|      :worried: |      :-:       |    :worried:   |      :smiley:  |      :smiley:  |
