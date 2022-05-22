@@ -25,10 +25,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
-
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.samples.petclinic.model.NamedEntity;
-import org.springframework.samples.petclinic.model.Person;
 import org.springframework.samples.petclinic.user.User;
 
 import lombok.Getter;
@@ -45,7 +43,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "clinic-owners")
+@Table(name = "clinics")
 public class ClinicOwner extends NamedEntity {
 
 	@Column(name = "address")
@@ -62,13 +60,13 @@ public class ClinicOwner extends NamedEntity {
 	private String telephone;
 
 	@Enumerated(EnumType.STRING)
+	@Column(name = "plan")
 	private ClinicOwnerPlanType plan;
 
-
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "username", referencedColumnName = "username")
+	@JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
-	
+
 	public String getAddress() {
 		return this.address;
 	}
@@ -109,14 +107,13 @@ public class ClinicOwner extends NamedEntity {
 		this.plan = plan;
 	}
 
-
 	@Override
 	public String toString() {
 		return new ToStringCreator(this)
 
 				.append("id", this.getId()).append("new", this.isNew()).append("name", this.getName())
-				.append("address", this.address).append("city", this.city)
-				.append("telephone", this.telephone).append("plan", this.plan.toString()).toString();
+				.append("address", this.address).append("city", this.city).append("telephone", this.telephone)
+				.append("plan", this.plan.toString()).toString();
 	}
 
 }

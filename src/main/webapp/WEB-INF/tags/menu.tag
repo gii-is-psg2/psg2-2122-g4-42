@@ -63,6 +63,12 @@
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span>Cambios</span>
 				</petclinic:menuItem>
+				
+				<petclinic:menuItem active="${name eq 'clinics'}" url="/plans"
+					title="palnes">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Cambiate de plan y mejora tu aplicación!</span>
+				</petclinic:menuItem>
 
 			</ul>
 
